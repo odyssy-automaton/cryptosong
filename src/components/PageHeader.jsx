@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../styles/global.scss";
 
-class Navigation extends Component {
+export default class PageHeader extends Component {
   constructor(props) {
     super(props);
   }
@@ -33,4 +33,3 @@ class Navigation extends Component {
     );
   }
 }
-module.exports = Navigation;

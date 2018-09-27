@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Header, Container, Segment, Embed } from "semantic-ui-react";
 import AlbumCanvas from "./AlbumCanvas.jsx";
-import Navigation from "./Navigation.jsx";
+import PageHeader from "./PageHeader.jsx";
 import moment from "moment";
 
 import "../styles/song.scss";
@@ -133,7 +133,7 @@ class Song extends Component {
   render() {
     return (
       <div>
-        <Navigation />
+        <PageHeader />
         {this.state.done && this.renderSong()}
         {!this.state.done && <div>Loading</div>}
       </div>
