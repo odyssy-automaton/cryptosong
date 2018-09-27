@@ -13,6 +13,7 @@ const App = () => {
       <Switch>
         {/* lists of songs routes */}
         <Route 
+          exact
           path="/" 
           render={props => (
             <SearchBy
