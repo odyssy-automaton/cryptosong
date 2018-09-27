@@ -5,13 +5,25 @@ import SongInputForm from "./SongInputForm.jsx";
 import SearchBy from "./SearchBy.jsx";
 import Song from "./Song.jsx";
 import Collection from "./editing/Collection.jsx";
-import ImportSongData from './ImportSongData.jsx';
+import ImportSongData from './editing/ImportSongData';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Switch>
          
+        {/* lists of songs routes */}
+
+        <Route 
+          path="/" 
+          render={props => (
+            <SearchBy
+              filterBy={false}
+              {...props}
+            />
+          )
+        } 
+        />
         {/* songs by all tags route */}
         <Route 
           path="/songs" 
@@ -23,10 +35,7 @@ const App = () => {
           )
         } 
         />
-        <Route
-          path="/song/new"
-          render={props => <SongInputForm {...props} />}
-        />
+
         {/* song detail page route */}
         <Route path="/song/:id" render={props => <Song {...props} />} />  
         {/* songs by tag route */}
@@ -41,14 +50,18 @@ const App = () => {
         } 
         />   
         
+        {/* song editing */}
+        <Route
+          path="/song/new"
+          render={props => <SongInputForm {...props} />}
+        />
         <Route
           path="/song/:id/edit"
           render={props => (
             <SongInputForm editing={true} {...props} />
           )}
         />
-        
-        {/* edit routes */}
+        {/* other edit routes */}
         <Route
           path="/instruments"
           render={props => (
@@ -116,17 +129,6 @@ const App = () => {
               {...props}
             />
           )}
-        />
-         {/* routes that display all songs */}
-        <Route 
-          path="/" 
-          render={props => (
-            <SearchBy
-              filterBy={false}
-              {...props}
-            />
-          )
-        } 
         />
       </Switch>
     </BrowserRouter>
