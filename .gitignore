@@ -24,6 +24,8 @@ coverage
 .env
 .nvmrc
 
+temp/
+
 build/js/
 build/css/
 build/2009
