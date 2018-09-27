@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Header, Container, Segment, Embed } from "semantic-ui-react";
-import AlbumCanvas from "./AlbumCanvas";
-import Navigation from "./Navigation";
+import AlbumCanvas from "./AlbumCanvas.jsx";
+import Navigation from "./Navigation.jsx";
 import moment from "moment";
 
 import "../styles/song.scss";
