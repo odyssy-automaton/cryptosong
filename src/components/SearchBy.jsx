@@ -1,13 +1,15 @@
 import React, { Component } from "react";
-import { Container, Card, Icon, Image, Popup, Embed } from "semantic-ui-react";
+import { Container, Icon, Dropdown } from "semantic-ui-react";
 import axios from "axios";
 import AlbumCanvas from "./AlbumCanvas.jsx";
 import PageHeader from "./PageHeader.jsx";
 import TagSelector from "./TagSelector.jsx";
+// import URI from 'urijs';
 
 import "../styles/songs.scss";
 
 class SearchBy extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -16,11 +18,16 @@ class SearchBy extends Component {
       imageSize: 100,
       tagSelector: false,
     };
-    this.revealTagSelector = this.revealTagSelector.bind(this);
     this.narrowSelection = this.narrowSelection.bind(this);
     this.getByTags = this.getByTags.bind(this);
     this.tagGrab = this.tagGrab.bind(this);
   }
+
+  /*
+  getStateFromUrl() {
+
+  }
+  */
 
   componentDidMount() {
     switch (this.props.filterBy) {
@@ -60,10 +67,6 @@ class SearchBy extends Component {
 
   narrowSelection(songs) {
     this.setState(songs);
-  }
-
-  revealTagSelector(bool) {
-    this.setState({tagSelector:bool})
   }
 
   renderKey(song) {
@@ -129,15 +132,7 @@ class SearchBy extends Component {
           justifyContent: "center",
         }}
       >
-        <PageHeader revealTagSelector={this.revealTagSelector}/>
-        {
-          this.state.tagSelector ? 
-          <TagSelector 
-            narrowSelection={this.narrowSelection}
-            tagGrab={(tags)=>this.tagGrab(tags)}
-          /> :
-          null   
-        }
+        <PageHeader />
         <div className="filter-navigation">
           <div className="filter-navigation-inner">
             <ul className="filter-size">
