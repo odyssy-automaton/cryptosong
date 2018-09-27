@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import SongInputForm from "./SongInputForm.jsx";
 import SearchBy from "./SearchBy.jsx";
 import Song from "./Song.jsx";
-import Collection from "./Collection.jsx";
+import Collection from "./editing/Collection.jsx";
 import ImportSongData from './ImportSongData.jsx';
 
 const App = () => {

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import { Input, Icon, List, Divider, Segment, Form, Grid, Container, Header, Button, Transition, Message } from 'semantic-ui-react'
+import { Input, Icon, List, Divider, Form, Grid, Container, Header, Button, Transition, Message } from 'semantic-ui-react'
 
 export default class Collection extends Component {
   constructor(props) {
@@ -140,8 +140,8 @@ export default class Collection extends Component {
   render() {
     const { collection, successIsOpen } = this.state;
     return (
-      <Container>
-        <Header size='large' style={{marginTop: '2em'}}>Edit {this.props.collectionName}s</Header>
+      <Container style={{padding: "0px 2%"}}>
+        <Header size='large' style={{marginTop: '2em', color: 'white'}}>Edit {this.props.collectionName}s</Header>
         <Button style={{marginBottom: '2em'}} onClick={this.addNewItem}>Add New {this.props.collectionName}</Button>
         <Form onSubmit={this.handleSubmit}>
           <List>{collection.map((item) => {
