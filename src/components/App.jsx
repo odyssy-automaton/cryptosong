@@ -1,19 +1,17 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import SongInputForm from "./SongInputForm.jsx";
+import SongInputForm from "./editing/SongInputForm.jsx";
 import SearchBy from "./SearchBy.jsx";
 import Song from "./Song.jsx";
 import Collection from "./editing/Collection.jsx";
-import ImportSongData from './editing/ImportSongData';
+import ImportSongData from './editing/ImportSongData.jsx';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Switch>
-         
         {/* lists of songs routes */}
-
         <Route 
           path="/" 
           render={props => (
@@ -24,7 +22,6 @@ const App = () => {
           )
         } 
         />
-        {/* songs by all tags route */}
         <Route 
           path="/songs" 
           render={props => (
@@ -35,10 +32,6 @@ const App = () => {
           )
         } 
         />
-
-        {/* song detail page route */}
-        <Route path="/song/:id" render={props => <Song {...props} />} />  
-        {/* songs by tag route */}
         <Route 
           path="/songs/tag/:tagname" 
           render={props => (
@@ -46,20 +39,15 @@ const App = () => {
               {...props} 
               filterBy={"tags"} 
             />
-          )
-        } 
-        />   
-        
-        {/* song editing */}
-        <Route
-          path="/song/new"
-          render={props => <SongInputForm {...props} />}
+          )} 
         />
-        <Route
-          path="/song/:id/edit"
-          render={props => (
-            <SongInputForm editing={true} {...props} />
-          )}
+        {/* song detail page route */}
+        <Route path="/song/:id" component={Song} />  
+        {/* song editing */}
+        <Route path="/song/new" component={SongInputForm} />
+        <Route 
+          path="/song/:id/edit" 
+          render={props => <SongInputForm editing={true} {...props} />} 
         />
         {/* other edit routes */}
         <Route

@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import axios from 'axios';
 import moment from 'moment';
 
-import AlbumCanvas from './AlbumCanvas.jsx';
+import AlbumCanvas from '../AlbumCanvas.jsx';
 
 const GENESIS = '1/1/2009';
 
