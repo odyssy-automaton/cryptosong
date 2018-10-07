@@ -15,13 +15,6 @@ export default class PageHeader extends Component {
             By the one and only Jonathan Mann
           </h2>
         </a>
-        <div className="global-navigation-search">
-          <input
-            className="global-search-input icon-search"
-            type="search"
-            placeholder={`Search through ${number_of_songs} songs`}
-          />
-        </div>
       </nav>
     );
   }

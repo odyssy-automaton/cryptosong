@@ -24,6 +24,15 @@ const App = () => {
         } 
         />
         <Route 
+          path="/songs/tag/:tagname" 
+          render={props => (
+            <SearchBy 
+              {...props} 
+              filterBy="tags"
+            />
+          )} 
+        />
+        <Route 
           path="/songs" 
           render={props => (
             <SearchBy
@@ -32,15 +41,6 @@ const App = () => {
             />
           )
         } 
-        />
-        <Route 
-          path="/songs/tag/:tagname" 
-          render={props => (
-            <SearchBy 
-              {...props} 
-              filterBy={"tags"} 
-            />
-          )} 
         />
         {/* song detail page route */}
         <Route path="/song/:id" component={Song} />  
