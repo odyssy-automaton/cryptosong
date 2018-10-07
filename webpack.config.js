@@ -1,59 +1,59 @@
 const webpack = require('webpack');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
+
+const devMode = process.env.NODE_ENV !== 'production'
 
 const uglifyjs = new UglifyJSPlugin({
   test: /\.js($|\?)/i,
   sourceMap: true,
 });
 
-const extractSass = new ExtractTextPlugin({
-  filename: './build/css/style.min.css',
-  disable: process.env.NODE_ENV === "development"
-});
-
 module.exports = {
   entry: [
-    './src/components/index.jsx',
-    // './src/styles/reset.css',
-    // './src/styles/react-select.css',
-    // './src/styles/style.css',
-  ],
-  plugins: [
-    // PRODUCTION
-    // new webpack.DefinePlugin({
-    //   'process.env': {
-    //     'NODE_ENV': '"production"'
-    //   }
-    // }),
-    // new webpack.optimize.UglifyJsPlugin(),
-    // PRODUCTION
-
-    // uglifyjs,
-    extractSass,
+    './src/index.jsx',
   ],
   output: {
-    filename: 'build/js/bundle.js',
+    path: path.resolve(__dirname, 'build'),
+    filename: 'js/bundle.js',
   },
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',
         },
       },
       {
-        test: /\.(css|sass|scss)$/,
-        use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader!sass-loader' })
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
+          // 'postcss-loader',
+          'sass-loader',
+        ],
       },
       {
         test: [/\.eot$/, /\.png$/, /\.jpg$/, /\.gif$/, /\.ttf$/, /\.svg$/, /\.woff$/, /\.woff2$/],
         loader: 'url-loader'
-        // output: './dist/public/css'
       },
     ],
   },
+  devServer: {
+    port: 3001,
+    open: true,
+    proxy: {
+      "/api": "http://localhost:3000",
+      "/import": "http://localhost:3000"
+    }
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css"
+    })
+  ],
 };
