@@ -63,7 +63,7 @@ class Song extends Component {
         <div className="song-header-container">
           <AlbumCanvas
             width={300}
-            images={[]}
+            backgroundImage={"/" + song.imagePath}
             song={song}
             songnumber="song.number"
             list={false}
@@ -100,12 +100,14 @@ class Song extends Component {
             <h2 className="song-meta-title">Key</h2>
             <p className="song-meta-content">{song.inkey.name}</p>
           </div>
+          {/*
           <div className="rarity">
             <div style={{ width: "200px", height: "200px" }}>
               <div className="rarity-score">{rarity}</div>
               <div className="rarity-title">Rarity Score</div>
             </div>
           </div>
+          */}
           <div className="song-content">
             <h1 className="song-title">{song.title}</h1>
             <h2 className="song-date">
