@@ -58,11 +58,12 @@ class SearchBy extends Component {
   */
 
   renderControls(songs) {
-    let locations = {}, keys = {}, instruments = {}, moods = {};
+    let locations = {}, keys = {}, instruments = {}, moods = {}, topics = {};
     songs.forEach(song => {
       let location = song.location && song.location.name;
       let key = song.inkey && song.inkey.name;
       let mood = song.mood && song.mood.name;
+      let topic = song.topic && song.topic.name
 
       if (location) {
         locations[location] = (locations[location] || 0) + 1;
@@ -78,11 +79,14 @@ class SearchBy extends Component {
       if (mood) {
         moods[mood] = (moods[mood] || 0) + 1;
       }
+      if (topic) {
+        topics[topic] = (topics[topic] || 0) + 1;
+      }
     });
 
     let locationDropdown = this.renderDropdown(
       _.sortBy(Object.keys(locations), l => locations[l] * -1), 
-      "Locations",
+      "Location",
       "rgb(236, 55, 36)");
 
     let keysList = _.sortBy(Object.keys(keys));
@@ -94,11 +98,11 @@ class SearchBy extends Component {
     }
     let keysDropdown = this.renderDropdown(
       keysList, 
-      "Keys", 
+      "Key", 
       "rgb(67, 115, 217)");
-    let instrumentsDropdown = this.renderDropdown(
-      _.sortBy(Object.keys(instruments), i => instruments[i] * -1), 
-      "Instruments",
+    let topicsDropdown = this.renderDropdown(
+      _.sortBy(Object.keys(topics), t => topics[t] * -1), 
+      "Topic",
       "rgb(84, 137, 78)")
     let otherDropdown = this.renderDropdown(
       _.sortBy(Object.keys(moods), m => moods[m] * -1), 
@@ -130,7 +134,7 @@ class SearchBy extends Component {
             />
             {locationDropdown}
             {keysDropdown}
-            {instrumentsDropdown}
+            {topicsDropdown}
             {otherDropdown}
           </div>
         </div>
@@ -207,24 +211,30 @@ class SearchBy extends Component {
       }
       let validValues = selected.map(s => s.value);
       switch (name) {
-        case "Locations":
+        case "Location":
           filteredSongs = filteredSongs.filter(s => (
             s.location && 
             s.location.name &&
             validValues.indexOf(s.location.name) >= 0
           ));
           break;
-        case "Keys":
+        case "Key":
           filteredSongs = filteredSongs.filter(s => (
             s.inkey && 
             s.inkey.name &&
             validValues.indexOf(s.inkey.name) >= 0
           ));
           break;
-        case "Instruments":
+        case "Topic":
           console.log(validValues);
+          filteredSongs = filteredSongs.filter(s => (
+            s.topic && 
+            s.topic.name &&
+            validValues.indexOf(s.topic.name) >= 0
+          ));
+          /*
           filteredSongs = filteredSongs.filter(s => {
-            if (_.isEmpty(s.instruments)) {
+            if (_.isEmpty(s.topic)) {
               return false;
             }
             let songInstruments = _.map(s.instruments, i => i.name);
@@ -234,6 +244,7 @@ class SearchBy extends Component {
               validValues
             ).length > 0;
           });
+          */
           break;
         case "Mood":
           filteredSongs = filteredSongs.filter(s => (
