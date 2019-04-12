@@ -130,11 +130,11 @@ const compositeImage = (buffer, imagePath) => {
 
 const createImage = async (song, imagePathsToCombine) => {
   let newImage = null;
-  // bg = getHueForDate(song.date);
-  // if (bg.match("hsl")) {
-  //   newImage = gm(1792, 768, bg);
-  // } else {
-  //   newImage = gm(bg);
+  bg = getHueForDate(song.date);
+  if (bg.match("hsl")) {
+    newImage = gm(1792, 768, bg);
+  } else {
+    newImage = gm(bg);
   }
 
   let newImageBuffer = await new Promise((resolve, reject) => {
@@ -174,7 +174,6 @@ async function main() {
     .populate("instruments")
     .populate("beard")
     .populate("topic")
-    .populate("location")
     .populate("mood")
     .populate("mainInstrument")
     .populate("secondaryInstrument");
