@@ -1,3 +1,4 @@
+require('dotenv').config()
 const ProgressBar = require('progress');
 const fs = require('fs');
 
@@ -5,7 +6,7 @@ const Schema = require('mongoose').Schema;
 
 const mongoose = require('mongoose');
 mongoose.Promise = Promise;
-mongoose.connect('mongodb://localhost/cryptosong', {
+mongoose.connect(process.env.MONGODB_HOST, {
     promiseLibrary: global.Promise
 });
 const db = mongoose.connection;

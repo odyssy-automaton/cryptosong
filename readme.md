@@ -55,19 +55,21 @@ Some routes you may find useful:
    yarn
    ```
 
-3. Run a mongo db server in another terminal window
+3. Create a local .env file. Duplicate the .env.sample and name it .env.
+
+4. Run a mongo db server in another terminal window
 
    ```bash
    $ mongod
    ```
 
-4. Seed the database
+5. Seed the database
 
    ```bash
    $ yarn run seed
    ```
 
-5. Create the Jons
+6. Create the Jons
 
    If you have the images you can drop them into a build/2009 folder. There will be 2 images per day ie.)
    1230872400-hands-oh-no.png
@@ -81,13 +83,13 @@ Some routes you may find useful:
    $ node server/scripts/yearOneImages.js
    ```
 
-6. Start the development servers
+7. Start the development servers
 
    ```bash
    $ yarn dev
    ```
 
-7. Visit http://localhost:3000/ in your browser
+8. Visit http://localhost:3000/ in your browser
 
 # Legacy development instructions
 
