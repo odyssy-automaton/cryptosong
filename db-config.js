@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 mongoose.Promise = Promise;
 
 mongoose.connect(process.env.MONGODB_HOST, {
-  promiseLibrary: global.Promise
+  promiseLibrary: global.Promise,
+  useNewUrlParser: true
 });
 
 Fawn.init(mongoose);
