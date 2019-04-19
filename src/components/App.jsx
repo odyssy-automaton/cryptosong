@@ -5,54 +5,34 @@ import SongInputForm from "./editing/SongInputForm.jsx";
 import SearchBy from "./SearchBy.jsx";
 import Song from "./Song.jsx";
 import Collection from "./editing/Collection.jsx";
-import ImportSongData from './editing/ImportSongData.jsx';
+import ImportSongData from "./editing/ImportSongData.jsx";
+import Home from "./views/Home.jsx";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Switch>
         {/* lists of songs routes */}
-        <Route 
-          exact
-          path="/" 
-          render={props => (
-            <SearchBy
-              filterBy={false}
-              {...props}
-            />
-          )
-        } 
+        <Route exact path="/" render={props => <Home {...props} />} />
+        <Route
+          path="/songs/tag/:tagname"
+          render={props => <SearchBy {...props} filterBy="tags" />}
         />
-        <Route 
-          path="/songs/tag/:tagname" 
-          render={props => (
-            <SearchBy 
-              {...props} 
-              filterBy="tags"
-            />
-          )} 
-        />
-        <Route 
-          path="/songs" 
-          render={props => (
-            <SearchBy
-              filterBy={false}
-              {...props}
-            />
-          )
-        } 
+        <Route
+          path="/songs"
+          render={props => <SearchBy filterBy={false} {...props} />}
         />
         {/* song detail page route */}
-        <Route path="/song/:id" component={Song} />  
+        <Route path="/song/:id" component={Song} />
         {/* song editing */}
         <Route path="/song/new" component={SongInputForm} />
-        <Route 
-          path="/song/:id/edit" 
-          render={props => <SongInputForm editing={true} {...props} />} 
+        <Route
+          path="/admin/song/:id/edit"
+          render={props => <SongInputForm editing={true} {...props} />}
         />
         {/* other edit routes */}
         <Route
-          path="/instruments"
+          path="/admin/instruments"
           render={props => (
             <Collection
               {...props}
@@ -62,7 +42,7 @@ const App = () => {
           )}
         />
         <Route
-          path="/topics"
+          path="/admin/topics"
           render={props => (
             <Collection
               {...props}
@@ -72,7 +52,7 @@ const App = () => {
           )}
         />
         <Route
-          path="/locations"
+          path="/admin/locations"
           render={props => (
             <Collection
               {...props}
@@ -82,7 +62,7 @@ const App = () => {
           )}
         />
         <Route
-          path="/inkeys"
+          path="/admin/inkeys"
           render={props => (
             <Collection
               {...props}
@@ -92,7 +72,7 @@ const App = () => {
           )}
         />
         <Route
-          path="/beards"
+          path="/admin/beards"
           render={props => (
             <Collection
               {...props}
@@ -102,7 +82,7 @@ const App = () => {
           )}
         />
         <Route
-          path="/tags"
+          path="/admin/tags"
           render={props => (
             <Collection
               {...props}
@@ -112,12 +92,8 @@ const App = () => {
           )}
         />
         <Route
-          path="/import-song-data"
-          render={props => (
-            <ImportSongData
-              {...props}
-            />
-          )}
+          path="/admin/import-song-data"
+          render={props => <ImportSongData {...props} />}
         />
       </Switch>
     </BrowserRouter>
