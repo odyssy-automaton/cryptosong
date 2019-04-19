@@ -1,22 +1,20 @@
-const webpack = require('webpack');
+const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const path = require('path');
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
+const path = require("path");
 
-const devMode = process.env.NODE_ENV !== 'production'
+const devMode = process.env.NODE_ENV !== "production";
 
 const uglifyjs = new UglifyJSPlugin({
   test: /\.js($|\?)/i,
-  sourceMap: true,
+  sourceMap: true
 });
 
 module.exports = {
-  entry: [
-    './src/index.jsx',
-  ],
+  entry: ["./src/index.jsx"],
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'js/bundle.js',
+    path: path.resolve(__dirname, "build"),
+    filename: "js/bundle.js"
   },
   module: {
     rules: [
@@ -24,23 +22,32 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
         use: {
-          loader: 'babel-loader',
-        },
+          loader: "babel-loader"
+        }
       },
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
-          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader',
+          devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+          "css-loader",
           // 'postcss-loader',
-          'sass-loader',
-        ],
+          "sass-loader"
+        ]
       },
       {
-        test: [/\.eot$/, /\.png$/, /\.jpg$/, /\.gif$/, /\.ttf$/, /\.svg$/, /\.woff$/, /\.woff2$/],
-        loader: 'url-loader'
-      },
-    ],
+        test: [
+          /\.eot$/,
+          /\.png$/,
+          /\.jpg$/,
+          /\.gif$/,
+          /\.ttf$/,
+          /\.svg$/,
+          /\.woff$/,
+          /\.woff2$/
+        ],
+        loader: "url-loader"
+      }
+    ]
   },
   devServer: {
     port: 3001,
@@ -55,5 +62,5 @@ module.exports = {
       filename: "[name].css",
       chunkFilename: "[id].css"
     })
-  ],
+  ]
 };
