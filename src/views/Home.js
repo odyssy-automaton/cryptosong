@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+import { get } from "../helpers/requests";
 
 class Home extends Component {
   constructor(props) {
@@ -10,8 +10,9 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    axios.get(`/api/song/1`).then(response => {
+    get(`api/song/1`).then(response => {
       console.log(response.data);
+
       this.setState({ song: response.data });
     });
   }
@@ -30,4 +31,4 @@ class Home extends Component {
   }
 }
 
-module.exports = Home;
+export default Home;

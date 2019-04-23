@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Stage, Image, Layer, Rect, Text } from "react-konva";
+// import { Stage, Image, Layer, Rect, Text } from "react-konva";
 import moment from "moment";
 
-import mergeImages from "../helpers/mergeImages.js";
+// import mergeImages from "../helpers/mergeImages.js";
 
 export default class AlbumCanvas extends Component {
   constructor(props) {
@@ -14,19 +14,18 @@ export default class AlbumCanvas extends Component {
   }
 
   componentDidMount() {
-    const { song } = this.props;
+    // const { song } = this.props;
   }
 
   componentWillReceiveProps(nextProps) {
-    const { song } = nextProps;
+    // const { song } = nextProps;
   }
 
   render() {
     const { backgroundImage, width, height } = this.props;
     let song_date,
       song_link,
-      song_list_item_classes = ["song-list-item"],
-      returned_item;
+      song_list_item_classes = ["song-list-item"];
 
     if (this.props.list) {
       song_date = new Date(this.props.song.date);
@@ -57,20 +56,22 @@ export default class AlbumCanvas extends Component {
           <div className="song-list-item-data">
             <div>
               Day: {this.props.song.number}{" "}
-              <span className="song-list-item-data-date">
-                {song_date}
-              </span>
+              <span className="song-list-item-data-date">{song_date}</span>
             </div>
             <h3 className="song-list-item-data-title">
-              <a href={song_link}>
-                {this.props.song.title.slice(0, 100)}
-              </a>
+              <a href={song_link}>{this.props.song.title.slice(0, 100)}</a>
             </h3>
           </div>
         </div>
       );
     } else {
-      return <img src={backgroundImage} className="song-image" />;
+      return (
+        <img
+          src={backgroundImage}
+          className="song-image"
+          alt={this.props.song.title}
+        />
+      );
     }
 
     // <Stage width={this.props.width} height={this.props.height} className="album-art" style={{float: 'left', border: '5px solid black'}}>
