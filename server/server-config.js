@@ -20,7 +20,7 @@ const app = express();
 // }
 
 var corsOptions = {
-  origin: process.env.WEB_APP_API_HOST,
+  origin: process.env.WEB_HOST,
   optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
