@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "builds": [
+    {
+      "src": "server/index.js",
+      "use": "@now/node-server"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "server/index.js"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "build": {
+    "env": {
+      "WEB_HOST": "@web_host",
+      "MONGODB_HOST": "@mongodb_host",
+      "API_HOST": "@api_host"
+    }
+  }
+}

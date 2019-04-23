@@ -10,7 +10,7 @@ const getHueForDate = require("../../src/helpers/hueConversion.js")
   .getHueForDate;
 
 const rootDir = __dirname + "/../../";
-const layersDir = rootDir + "public/img/artlayers";
+const layersDir = rootDir + "image-layers/artlayers";
 const outputDir = rootDir + "public/";
 
 const imagePath = path => layersDir + path;

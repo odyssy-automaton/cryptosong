@@ -25,9 +25,6 @@ yarn-error.log*
 
 .nvmrc
 
-public/img/2008
-public/img/2009
-public/img/2010
 public/img/jons
 
 db/

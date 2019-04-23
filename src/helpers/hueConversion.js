@@ -13,7 +13,7 @@ const daysIntoYear = date => {
 };
 
 const rootDir = __dirname + "/../../";
-const layers = rootDir + "public/img/artlayers";
+const layers = rootDir + "image-layers/artlayers";
 
 const whichYear = date => {
   // Determine which year it is. Simple math because it started in 2009
