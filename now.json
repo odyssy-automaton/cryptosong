@@ -1,15 +1,16 @@
 {
-  "version": 1,
+  "version": 2,
+  "name": "cryptosong",
   "builds": [
     {
-      "src": "server/index.js",
+      "src": "server/server-config.js",
       "use": "@now/node-server"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "server/index.js"
+      "dest": "server/server-config.js"
     }
   ],
   "env": {
@@ -19,7 +20,7 @@
     "env": {
       "WEB_HOST": "@web_host",
       "MONGODB_HOST": "@mongodb_host",
-      "API_HOST": "@api_host"
+      "REACT_APP_API_HOST": "@react_app_api_host"
     }
   }
 }
