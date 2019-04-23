@@ -37,6 +37,8 @@
    $ mkdir public/img/2008
    $ mkdir public/img/2009
    $ node server/scripts/yearOneImages.js
+   $ node server/scripts/yearOneBackgroundAlone.js
+   $ node server/scripts/yearOneJonAlone.js
    ```
 
 7. Start the development servers

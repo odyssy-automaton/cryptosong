@@ -17,7 +17,7 @@
     "moment": "^2.24.0",
     "moment-holiday": "^1.5.1",
     "moment-timezone": "^0.5.25",
-    "mongoose": "^5.5.2",
+    "mongoose": "5.4.*",
     "node-sass": "^4.11.0",
     "nodemon": "^1.18.11",
     "progress": "^2.0.3",
@@ -33,6 +33,9 @@
     "sequelize": "^5.7.3",
     "serve": "^11.0.0"
   },
+  "resolutions": {
+    "mongoose/**/mongodb": "3.1.13"
+  },
   "main": "server/index.js",
   "scripts": {
     "web-start": "react-scripts start",
@@ -40,9 +43,11 @@
     "web-test": "react-scripts test",
     "web-eject": "react-scripts eject",
     "server-start": "NODE_ENV=development nodemon server/index.js",
+    "server-start:prod": "NODE_ENV=production node server/index.js",
     "babel-node": "babel-node --presets env",
     "dev": "concurrently \"yarn run web-start\" \"npm run server-start\"",
-    "seed": "node ./server/scripts/seedDB.js"
+    "seed": "node ./server/scripts/seedDB.js",
+    "now-start": "yarn server-start:prod"
   },
   "eslintConfig": {
     "extends": "react-app"
