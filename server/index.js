@@ -6,4 +6,4 @@ const port = process.env.PORT || 3005;
 
 app.listen(port);
 
-console.log("Serving up fresh HTML on port", port);
+console.log("Serving up fresh JSON on port", port);
