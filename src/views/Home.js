@@ -28,14 +28,13 @@ class Home extends Component {
     return (
       <div>
         <Header />
-        <div className="Hero">
+        {song ?
+        // style={ { backgroundImage: `url(require(` + {song.imagePathBg} + `))` } }
+        <div className="Hero"  style={ { backgroundImage: `url(` + song.imagePathBg + `)` } }>
           <div className="Left">
-          {song ? 
-            <img src={song.imagePath} /> : 
-          null}
+            <img src={song.imagePathJon} />
           </div>
           <div className="Right">
-            {song ? 
             <div className="Card">
               <div className="Card__Header">
                 <div className="Card__Header--Title">
@@ -47,22 +46,23 @@ class Home extends Component {
                 </div>
               </div>
               <div className="Card__Video">
-              <Embed
-              id={song.videoid}
-              placeholder={`https://img.youtube.com/vi/${
-                song.videoid
-              }/mqdefault.jpg`}
-              source="youtube"
-              />
+                <Embed
+                id={song.videoid}
+                placeholder={`https://img.youtube.com/vi/${
+                  song.videoid
+                }/mqdefault.jpg`}
+                source="youtube"
+                />
               </div>
               <div className="Card__Meta">
                <p>{song.description}</p>
                <p>{song.tagNames}</p>
               </div>
             </div>
-            : null}
           </div>
         </div>
+         : 
+         null}
         
       </div>
     );
