@@ -1,15 +1,16 @@
 import React, { Component } from "react";
-import "../styles/global.scss";
+import "../styles/Header.scss";
 
 class PageHeader extends Component {
   render() {
     return (
-      <nav className="global-navigation">
+      <div className="Header">
+      <nav className="Header__Nav global-navigation">
         <a style={{ display: "block" }} href="/">
-          <h1 className="site-name">Song A Day World</h1>
-          <h2 className="site-sub-name">By the one and only Jonathan Mann</h2>
+          <div className="Header__Nav--Brand"><img src="/img/SongADayWorld__Logo.svg" /></div>
         </a>
       </nav>
+      </div>
     );
   }
 }
