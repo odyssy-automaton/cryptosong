@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
@@ -25,7 +23,8 @@ yarn-error.log*
 
 .nvmrc
 
-public/img/jons
+public/img/2008
+public/img/2009
 
 db/
 
