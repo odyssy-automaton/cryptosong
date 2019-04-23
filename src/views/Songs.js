@@ -2,11 +2,14 @@ import React, { Component } from "react";
 import { Container } from "semantic-ui-react";
 import Select from "react-select";
 import _ from "lodash";
-import axios from "axios";
+// import axios from "axios";
 import moment from "moment";
 import * as JsSearch from "js-search";
-import AlbumCanvas from "./AlbumCanvas.jsx";
-import PageHeader from "./PageHeader.jsx";
+
+import { get } from "../helpers/requests";
+
+import AlbumCanvas from "../components/AlbumCanvas";
+import PageHeader from "../components/PageHeader";
 // import TagSelector from './TagSelector.jsx';
 
 // import URI from 'urijs';
@@ -36,7 +39,7 @@ class SearchBy extends Component {
   }
 
   componentDidMount() {
-    axios.get("/api/songs").then(songs => {
+    get("api/songs").then(songs => {
       console.log(songs.data);
       this.setState({ songs: songs.data }, () => {
         this.jsSearch = new JsSearch.Search("description");
@@ -267,6 +270,8 @@ class SearchBy extends Component {
             s => s.mood && s.mood.name && validValues.indexOf(s.mood.name) >= 0
           );
           break;
+        default:
+          filteredSongs = [];
       }
     });
 
@@ -289,7 +294,7 @@ class SearchBy extends Component {
       const className = size === this.state.size ? "active" : "";
       return (
         <li key={size} className={className}>
-          <a onClick={changeZoom.bind(this, size)}>{size}</a>
+          <span onClick={changeZoom.bind(this, size)}>{size}</span>
         </li>
       );
     });
@@ -360,4 +365,4 @@ class SearchBy extends Component {
   }
 }
 
-module.exports = SearchBy;
+export default SearchBy;

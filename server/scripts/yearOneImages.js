@@ -4,19 +4,19 @@ const path = require("path");
 const pLimit = require("p-limit");
 const limit = pLimit(1);
 
-const db = require("../../db-config");
+const db = require("../db-config");
 const SongModel = require("../models/song");
 const getHueForDate = require("../../src/helpers/hueConversion.js")
   .getHueForDate;
 
 const rootDir = __dirname + "/../../";
-const layersDir = rootDir + "build/artlayers";
-const outputDir = rootDir + "build/";
+const layersDir = rootDir + "public/img/artlayers";
+const outputDir = rootDir + "public/";
 
 const imagePath = path => layersDir + path;
 
 // Note: you may have to precreate the 2009 directory in outputDir
- 
+
 /*
 const slugify = text => {
   return text
@@ -36,9 +36,7 @@ const createImagePathArray = r => {
   array.push(layersDir + "/" + r.location.image);
   array.push(layersDir + "/mood_" + r.mood.name.toLowerCase() + ".png");
   beardPath = r.beard
-    ? imagePath(
-        `/beard_${r.beard.name.toLowerCase().replace(/\//g, "")}.png`
-      )
+    ? imagePath(`/beard_${r.beard.name.toLowerCase().replace(/\//g, "")}.png`)
     : imagePath("/beard_na.png");
   array.push(beardPath);
   addTopic(r, array);
@@ -142,7 +140,7 @@ const createImage = async (song, imagePathsToCombine) => {
     newImage.toBuffer("PNG", (err, buffer) => {
       if (err) reject(err);
       resolve(buffer);
-    })
+    });
   });
 
   // composite images
@@ -185,7 +183,7 @@ async function main() {
   for (const song of results) {
     try {
       await createImage(song, createImagePathArray(song));
-    } catch(err) {
+    } catch (err) {
       console.log(`error creating ${song.title}`);
       console.log(err);
     }

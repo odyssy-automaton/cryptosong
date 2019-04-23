@@ -1,26 +1,13 @@
 import React, { Component } from "react";
-import axios from "axios";
-import { Header, Container, Segment, Embed } from "semantic-ui-react";
-import AlbumCanvas from "./AlbumCanvas.jsx";
-import PageHeader from "./PageHeader.jsx";
+import { Embed } from "semantic-ui-react";
+
+import { get } from "../helpers/requests";
+import AlbumCanvas from "../components/AlbumCanvas";
+import PageHeader from "../components/PageHeader";
 import moment from "moment";
 
 import "../styles/song.scss";
 
-// const Song = ({ match }) => {
-//   const id = match.params.id;
-//   axios.get('/api/song/${id}')
-//   .then(response => {
-//   return (
-//     <div>
-//     {response.data.title}
-//     </div>
-//   )
-//   })
-//   // return (
-//   //   <div>{match.params.id}</div>
-//   // )
-// }
 class Song extends Component {
   constructor(props) {
     super(props);
@@ -32,7 +19,7 @@ class Song extends Component {
 
   componentDidMount() {
     const { match } = this.props;
-    axios.get(`/api/song/${match.params.id}`).then(response => {
+    get(`api/song/${match.params.id}`).then(response => {
       this.setState({ song: response.data, done: true });
     });
   }
@@ -40,8 +27,8 @@ class Song extends Component {
   renderSong() {
     const { song } = this.state;
     let instruments = [],
-      tags = [],
-      rarity = Math.floor(Math.random() * 100) + "%";
+      tags = [];
+    // rarity = Math.floor(Math.random() * 100) + "%";
 
     song.instruments.map(instrument => {
       instruments.push(instrument.name);
@@ -72,24 +59,23 @@ class Song extends Component {
         <div className="song-content-container">
           <div className="song-meta">
             <h2 className="song-meta-title">Instruments</h2>
-            <p className="song-meta-content">
-              {instruments.join(", ")}
-            </p>
+            <p className="song-meta-content">{instruments.join(", ")}</p>
 
             <h2 className="song-meta-title">Tags</h2>
             <p className="song-meta-content">
-              { 
-                tags.map((tag, key) => {
-                  let url = `/songs/tag/${tag}`
-                  return  <span key={key}><a href={url}>{tag}</a>{tags.length == (key + 1)?" ":", "}</span>
-                })
-              }
+              {tags.map((tag, key) => {
+                let url = `/songs/tag/${tag}`;
+                return (
+                  <span key={key}>
+                    <a href={url}>{tag}</a>
+                    {tags.length == key + 1 ? " " : ", "}
+                  </span>
+                );
+              })}
             </p>
 
             <h2 className="song-meta-title">Location Written</h2>
-            <p className="song-meta-content">
-              {song.location.name}
-            </p>
+            <p className="song-meta-content">{song.location.name}</p>
 
             <h2 className="song-meta-title">Mood</h2>
             <p className="song-meta-content">{song.mood.name}</p>
@@ -149,4 +135,4 @@ class Song extends Component {
   }
 }
 
-module.exports = Song;
+export default Song;
