@@ -11,7 +11,7 @@ const getHueForDate = require("../../src/helpers/hueConversion.js")
 
 const rootDir = __dirname + "/../../";
 const layersDir = rootDir + "public/img/artlayers";
-const outputDir = rootDir + "public/";
+const outputDir = rootDir + "public/img/jons";
 
 const imagePath = path => layersDir + path;
 
@@ -33,7 +33,6 @@ const slugify = text => {
 // create the array of image paths to composite together
 const createImagePathArray = r => {
   let array = [];
-  array.push(layersDir + "/" + r.location.image);
   array.push(layersDir + "/mood_" + r.mood.name.toLowerCase() + ".png");
   beardPath = r.beard
     ? imagePath(`/beard_${r.beard.name.toLowerCase().replace(/\//g, "")}.png`)
@@ -173,7 +172,6 @@ async function main() {
     .populate("instruments")
     .populate("beard")
     .populate("topic")
-    .populate("location")
     .populate("mood")
     .populate("mainInstrument")
     .populate("secondaryInstrument");
