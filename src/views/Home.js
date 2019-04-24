@@ -4,7 +4,8 @@ import Header from "../components/Header";
 import { get } from "../helpers/requests";
 import moment from "moment";
 
-import '../styles/Home.scss'
+import '../styles/Global.scss';
+import '../styles/Home.scss';
 
 class Home extends Component {
   constructor(props) {
@@ -60,7 +61,11 @@ class Home extends Component {
               </div>
               <div className="Card__Meta">
                <p>{song.description}</p>
-               <p>{song.tagNames}</p>
+               <p>
+                {song.tagNames.map((tag, i) => [
+                <div className="Tag" key={i} tag={tag}>{tag}</div>
+                ])}
+                </p>
               </div>
             </div>
           </div>
