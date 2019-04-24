@@ -11,6 +11,7 @@ class Header extends Component {
         </a>
       </div>
       <nav className="Header__Nav"></nav>
+        <button className="Button" href="" >Surprise Me</button>
       </div>
     );
   }

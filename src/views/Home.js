@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import { get } from "../helpers/requests";
 import moment from "moment";
 
+import '../styles/global.scss'
 import '../styles/Home.scss'
 
 class Home extends Component {

@@ -1,13 +1,16 @@
 
+@import './variables';
+
 // Start
 
-// Palette
-$purple: #6829CC;
-$pink: #CC29AE;
-$yellow: #E5D32E;
-
 .Button {
-
+ background-color: $purple;
+ color: white;
+ border-radius: 3px;
+ padding: 10px 15px;
+ border: none;
+ display: flex;
+ justify-content: center;
 }
 
 // Old school styles, refactor and remove
