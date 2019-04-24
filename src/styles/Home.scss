@@ -1,0 +1,49 @@
+
+// Header
+
+.Home {
+
+}
+
+.Hero {
+    width: 100%;
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    display: flex;
+    max-width: 1600px;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    padding: 100px;
+    .Left {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .Right {
+        width: 50%;
+    }
+}
+
+.Card {
+    width: 100%;
+    max-width: 640px;
+    border-radius: 5px;
+    background-color: white;
+    &__Header {
+        padding: 10px 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &--Title {
+            h2 { font-size: 1.75em; margin-bottom: 0px; }
+            p { font-size: 0.85em; color: #aaa; }
+        }
+    }
+    &__Video {}
+    &__Meta {
+        padding: 15px;
+    }
+}
