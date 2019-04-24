@@ -6,7 +6,7 @@
 .Hero {
     width: 100%;
     background-size: cover;
-    background-position: center top;
+    background-position: center bottom;
     background-repeat: no-repeat;
     display: flex;
     max-width: 1600px;
@@ -19,15 +19,16 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        img { margin-bottom: -15px; }
     }
     .Right {
-        width: 50%;
+        width: 50%;  
     }
 }
 
 .Card {
     width: 100%;
-    max-width: 640px;
+    max-width: 420px;
     border-radius: 5px;
     background-color: white;
     &__Header {
