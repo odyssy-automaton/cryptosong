@@ -41,6 +41,22 @@
    $ node server/scripts/yearOneJonAlone.js
    ```
 
+   Recommend hosting the assets in something like S3 in 2008 or 2009 folders and then removing from your public folder. You could also host them in the application and deploy them in the public folder where they were created. The API will construct the image urls using the IMAGE_HOST path in the .env.
+
+   Configure the host path in the .env
+
+   ```
+   S3 example example to return 'https://s3.amazonaws.com/<bucket-name>/<subdirectory>/2008/1230786000-in-the-time-of-the-gods.png'
+
+   IMAGE_HOST=https://s3.amazonaws.com/<bucket-name>/<subdirectory>
+   ```
+
+   ```
+   Hosted in app example to return 'img/2008/1230786000-in-the-time-of-the-gods.png'
+
+   IMAGE_HOST=img
+   ```
+
 7. Start the development servers
 
    Concurrently:
