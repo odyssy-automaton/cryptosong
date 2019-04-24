@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Embed } from "semantic-ui-react";
 import Header from "../components/Header";
 import { get } from "../helpers/requests";
+import moment from "moment";
+
 import '../styles/Home.scss'
 
 class Home extends Component {
@@ -39,10 +41,12 @@ class Home extends Component {
               <div className="Card__Header">
                 <div className="Card__Header--Title">
                   <h2>{song.title}</h2>
-                  <p>{song.number} | {song.date}</p>
+                  <p>{`Song ${song.number} | ${moment(song.date).format("MMMM Do, YYYY")}`}
+                </p>
                 </div>
                 <div className="Card__Header--Date">
-                  <p>{song.date}</p>
+                  <p className="Large">{`${moment(song.date).format("DD")}`}</p>
+                  <p className="Small">{`${moment(song.date).format("MMM 'YY")}`}</p>
                 </div>
               </div>
               <div className="Card__Video">
