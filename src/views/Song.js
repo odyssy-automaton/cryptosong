@@ -50,7 +50,7 @@ class Song extends Component {
         <div className="song-header-container">
           <AlbumCanvas
             width={300}
-            backgroundImage={"/" + song.imagePath}
+            backgroundImage={song.imagePath}
             song={song}
             songnumber="song.number"
             list={false}

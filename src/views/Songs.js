@@ -311,7 +311,7 @@ class SearchBy extends Component {
           key={key}
           width={this.state.imageSize}
           height={this.state.imageSize}
-          backgroundImage={`/${song.imagePathSmall}`}
+          backgroundImage={song.imagePathSmall}
           song={song}
           songnumber={song.number}
           list
