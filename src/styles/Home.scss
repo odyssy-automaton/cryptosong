@@ -1,5 +1,5 @@
-
-// Header
+@import '../styles/variables';
+// Home
 
 .Home {
 
@@ -39,7 +39,23 @@
         justify-content: space-between;
         &--Title {
             h2 { font-size: 1.75em; margin-bottom: 0px; }
-            p { font-size: 0.85em; color: #aaa; }
+            p { font-size: 1em; color: #aaa; }
+        }
+        &--Date {
+            background-color: $pink; 
+            text-align: center;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            .Large {
+                font-size: 1.75em;
+                margin: 0;
+            }
+            .Small {
+                margin: 0;
+                margin-top: -5px;
+                font-size: 0.85em;                
+            }
         }
     }
     &__Video {}
