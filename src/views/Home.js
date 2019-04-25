@@ -6,8 +6,8 @@ import { get } from "../helpers/requests";
 import Header from "../components/Header";
 import Playlist from "../components/Playlist";
 
-import '../styles/Global.scss';
-import '../styles/Home.scss';
+import "../styles/Global.scss";
+import "../styles/Home.scss";
 
 class Home extends Component {
   constructor(props) {
@@ -23,16 +23,26 @@ class Home extends Component {
     });
   }
 
-  componentWillUnmount() {}
+  createTagList = () => {
+    if (this.state.song) {
+      return this.state.song.tagNames.map((tag, i) => {
+        return (
+          <div className="Tag" key={i} tag={tag}>
+            {tag}
+          </div>
+        );
+      });
+    }
+  };
 
   render() {
     const { song } = this.state;
+    const tagList = this.createTagList();
 
     return (
       <div>
         <Header />
         {song ? (
-          // style={ { backgroundImage: `url(require(` + {song.imagePathBg} + `))` } }
           <Fragment>
             <div
               className="Hero"
@@ -72,7 +82,7 @@ class Home extends Component {
                   </div>
                   <div className="Card__Meta">
                     <p>{song.description}</p>
-                    <p>{song.tagNames}</p>
+                    <p>{tagList}</p>
                   </div>
                 </div>
               </div>

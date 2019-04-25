@@ -1,42 +1,41 @@
-
-@import './variables';
+@import "./variables";
 
 // Start
 
 .Button {
- background-color: $purple;
- color: white;
- border-radius: 3px;
- padding: 10px 15px;
- border: none;
- display: flex;
- align-content: center;
- justify-content: center;
- position: relative;
- outline: none;
- > span.Icon {
-     margin: 0;
-     padding: 0px;
-     margin-right: 5px;
-     svg {
-         display: block;
-         height: 16px;
-         width: 16px;
-     }
- }
+  background-color: $purple;
+  color: white;
+  border-radius: 3px;
+  padding: 10px 15px;
+  border: none;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  position: relative;
+  outline: none;
+  > span.Icon {
+    margin: 0;
+    padding: 0px;
+    margin-right: 5px;
+    svg {
+      display: block;
+      height: 16px;
+      width: 16px;
+    }
+  }
 }
 
 // Tags
 
 .Tag {
-    background-color: #f4f4f4;
-    padding: 10px 15px;
-    color: $purple;
-    border-radius: 3px;
-    text-transform: capitalize;
-    display: inline-block;
-    font-weight: 700;
-    &:not(:last-of-type) {
-        margin-right: 15px;
-    }
+  background-color: #f4f4f4;
+  padding: 10px 15px;
+  color: $purple;
+  border-radius: 3px;
+  text-transform: capitalize;
+  display: inline-block;
+  font-weight: 700;
+  &:not(:last-of-type) {
+    margin-right: 15px;
+  }
 }
