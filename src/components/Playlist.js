@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import moment from "moment";
 
 import { get } from "../helpers/requests";
+import '../styles/Playlist.scss';
 
 class Playlist extends Component {
   state = {
@@ -13,13 +15,39 @@ class Playlist extends Component {
     });
   };
 
+  createTagList = () => {
+    if (this.state.song) {
+      return this.state.song.tagNames.map((tag, i) => {
+        return (
+          <div className="Tag" key={i} tag={tag}>
+            {tag}
+          </div>
+        );
+      });
+    }
+  };
+
   createPlayList = () => {
+    
+
     if (this.state.songs) {
       return [this.props.currentSong, ...this.state.songs].map(song => {
+        const tagList = this.createTagList();
         return (
-          <div key={song.number}>
-            <p>{song.title}</p>
-            <img src={song.imagePathSmall} alt={song.title} />
+          <div className="Playlist__Item" key={song.number}>
+            <div className="Playlist__Item--Hero" style={{ backgroundImage: `url(` + song.imagePath + `)` }}></div>
+            <div className="Date">
+              <p className="Large">{`${moment(song.date).format(
+                "DD"
+              )}`}</p>
+              <p className="Small">{`${moment(song.date).format(
+                "MMM 'YY"
+              )}`}</p>
+            </div>
+            <div className="Playlist__Item--Meta">
+              <p>{song.title}</p>
+              <p>{tagList}</p>
+            </div>
           </div>
         );
       });
@@ -31,8 +59,6 @@ class Playlist extends Component {
 
     return (
       <div className="Playlist">
-        <h3>Playlist</h3>
-
         {playlist}
       </div>
     );

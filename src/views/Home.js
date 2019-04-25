@@ -87,7 +87,10 @@ class Home extends Component {
                 </div>
               </div>
             </div>
-            <Playlist currentSong={song} />
+            <div className="">
+              <h3>Playlist</h3>
+              <Playlist currentSong={song} />
+            </div>
           </Fragment>
         ) : null}
       </div>
