@@ -9,7 +9,6 @@ class SurpriseLink extends Component {
   };
 
   componentDidMount = () => {
-    console.log("mounting");
     get("api/songs/count").then(count => {
       const songNumber =
         Math.floor(Math.random() * Math.floor(+count.data.number - 1)) + 1;
