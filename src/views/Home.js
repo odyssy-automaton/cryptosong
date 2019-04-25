@@ -1,10 +1,12 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Embed } from "semantic-ui-react";
-import Header from "../components/Header";
-import { get } from "../helpers/requests";
 import moment from "moment";
 
-import '../styles/Home.scss'
+import { get } from "../helpers/requests";
+import Header from "../components/Header";
+import Playlist from "../components/Playlist";
+
+import "../styles/Home.scss";
 
 class Home extends Component {
   constructor(props) {
@@ -16,8 +18,6 @@ class Home extends Component {
 
   componentDidMount() {
     get(`api/song/1`).then(response => {
-      console.log(response.data);
-
       this.setState({ song: response.data });
     });
   }
@@ -30,44 +30,55 @@ class Home extends Component {
     return (
       <div>
         <Header />
-        {song ?
-        // style={ { backgroundImage: `url(require(` + {song.imagePathBg} + `))` } }
-        <div className="Hero"  style={ { backgroundImage: `url(` + song.imagePathBg + `)` } }>
-          <div className="Left">
-            <img src={song.imagePathJon} />
-          </div>
-          <div className="Right">
-            <div className="Card">
-              <div className="Card__Header">
-                <div className="Card__Header--Title">
-                  <h2>{song.title}</h2>
-                  <p>{`Song ${song.number} | ${moment(song.date).format("MMMM Do, YYYY")}`}
-                </p>
-                </div>
-                <div className="Card__Header--Date">
-                  <p className="Large">{`${moment(song.date).format("DD")}`}</p>
-                  <p className="Small">{`${moment(song.date).format("MMM 'YY")}`}</p>
-                </div>
+        {song ? (
+          // style={ { backgroundImage: `url(require(` + {song.imagePathBg} + `))` } }
+          <Fragment>
+            <div
+              className="Hero"
+              style={{ backgroundImage: `url(` + song.imagePathBg + `)` }}
+            >
+              <div className="Left">
+                <img src={song.imagePathJon} alt={song.title} />
               </div>
-              <div className="Card__Video">
-                <Embed
-                id={song.videoid}
-                placeholder={`https://img.youtube.com/vi/${
-                  song.videoid
-                }/mqdefault.jpg`}
-                source="youtube"
-                />
-              </div>
-              <div className="Card__Meta">
-               <p>{song.description}</p>
-               <p>{song.tagNames}</p>
+              <div className="Right">
+                <div className="Card">
+                  <div className="Card__Header">
+                    <div className="Card__Header--Title">
+                      <h2>{song.title}</h2>
+                      <p>
+                        {`Song ${song.number} | ${moment(song.date).format(
+                          "MMMM Do, YYYY"
+                        )}`}
+                      </p>
+                    </div>
+                    <div className="Card__Header--Date">
+                      <p className="Large">{`${moment(song.date).format(
+                        "DD"
+                      )}`}</p>
+                      <p className="Small">{`${moment(song.date).format(
+                        "MMM 'YY"
+                      )}`}</p>
+                    </div>
+                  </div>
+                  <div className="Card__Video">
+                    <Embed
+                      id={song.videoid}
+                      placeholder={`https://img.youtube.com/vi/${
+                        song.videoid
+                      }/mqdefault.jpg`}
+                      source="youtube"
+                    />
+                  </div>
+                  <div className="Card__Meta">
+                    <p>{song.description}</p>
+                    <p>{song.tagNames}</p>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-         : 
-         null}
-        
+            <Playlist currentSong={song} />
+          </Fragment>
+        ) : null}
       </div>
     );
   }
