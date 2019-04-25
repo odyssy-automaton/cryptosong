@@ -1,115 +1,42 @@
 
+@import './variables';
+
 // Start
 
-// Palette
-$purple: #6829CC;
-$pink: #CC29AE;
-$yellow: #E5D32E;
-
 .Button {
-
+ background-color: $purple;
+ color: white;
+ border-radius: 3px;
+ padding: 10px 15px;
+ border: none;
+ display: flex;
+ align-content: center;
+ justify-content: center;
+ position: relative;
+ outline: none;
+ > span.Icon {
+     margin: 0;
+     padding: 0px;
+     margin-right: 5px;
+     svg {
+         display: block;
+         height: 16px;
+         width: 16px;
+     }
+ }
 }
 
-// Old school styles, refactor and remove
+// Tags
 
-body {
-  font-family: 'futura-pt-condensed', sans-serif !important;
+.Tag {
+    background-color: #f4f4f4;
+    padding: 10px 15px;
+    color: $purple;
+    border-radius: 3px;
+    text-transform: capitalize;
+    display: inline-block;
+    font-weight: 700;
+    &:not(:last-of-type) {
+        margin-right: 15px;
+    }
 }
-.ui.container{
-  width: 100% !important;
-}
-
-#main{
-  padding-top: 150px;
-  background-color: #fff;
-}
-
-.global-navigation{
-  align-items: center;
-  text-align: center;
-  background: #fff;
-  color: #0f0f0f;
-  display: flex;
-  font-family: 'futura-pt-condensed', sans-serif;
-  height: 80px;
-  justify-content: space-around;
-  left: 0;
-  padding: 20px;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 999;
-  box-shadow: 0 2px 4px rgba(0,0,0,.5);
-  a {
-    color: #333;
-  }
-}
-
-.global-navigation-links,
-.global-navigation-search{
-  width: 250px;
-}
-
-.site-name{
-  font-size: 18px;
-  margin: 0;
-  padding: 0;
-}
-
-.site-sub-name{
-  font-size: 12px;
-  margin: 0;
-  padding: 0;
-  color:rgb(236, 55, 36);
-}
-
-.global-search-input{
-  background: #6D6D6D;
-  font-size: 10px;
-  text-transform: uppercase;
-  padding: 14px;
-  border: none;
-  outline: none;
-  color: #FFF;
-  border-radius: 5px;
-  width: 250px;
-}
-.global-search-input::placeholder{
-  color: #BABABA;
-}
-
-.filter-navigation{
-  width: 100%;
-  background: #F3F5F7;
-  position: sticky;
-  font-size: 18px;
-  top: 80px;
-  z-index: 9;
-}
-
-.filter-navigation-inner {
-  max-width: none;
-  margin: 0px 55px;
-  display: flex;
-  justify-content: space-between !important;
-}
-
-.filter-size{
-  display: flex;
-  list-style: none;
-}
-.filter-size li{
-  padding: 12px;
-  text-transform: uppercase;
-  cursor: pointer;
-  &.active{
-    pointer-events: none;
-    background: #fff;
-    color: #333;
-    border-radius: 4px;
-  }
-}
-
-
-
-

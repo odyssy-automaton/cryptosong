@@ -6,7 +6,8 @@ import { get } from "../helpers/requests";
 import Header from "../components/Header";
 import Playlist from "../components/Playlist";
 
-import "../styles/Home.scss";
+import '../styles/Global.scss';
+import '../styles/Home.scss';
 
 class Home extends Component {
   constructor(props) {
