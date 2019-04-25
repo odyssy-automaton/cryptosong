@@ -56,6 +56,7 @@ class SurpriseLink extends Component {
               />
             </svg>
           </span>
+          Surprise Me
         </Link>
       </div>
     );
