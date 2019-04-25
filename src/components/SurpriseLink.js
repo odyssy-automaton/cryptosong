@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
 import { get } from "../helpers/requests";
 
@@ -9,6 +8,10 @@ class SurpriseLink extends Component {
   };
 
   componentDidMount = () => {
+    this.getSurprise();
+  };
+
+  getSurprise = () => {
     get("api/songs/count").then(count => {
       const songNumber =
         Math.floor(Math.random() * Math.floor(+count.data.number - 1)) + 1;
@@ -17,12 +20,15 @@ class SurpriseLink extends Component {
     });
   };
 
-  render() {
-    const { songNumber } = this.state;
+  handleClick = () => {
+    this.props.swapHeroSong(this.state.songNumber);
+    this.getSurprise();
+  };
 
+  render() {
     return (
       <div className="SurpriseLink">
-        <Link to={`song/${songNumber}`} className="Button">
+        <button className="Button" onClick={this.handleClick}>
           <span className="Icon">
             <svg
               width="25"
@@ -46,9 +52,9 @@ class SurpriseLink extends Component {
               <path
                 d="M10.9689 15.75L16.5689 10.15C17.0189 9.70005 17.0189 8.95005 16.5689 8.45005L15.9689 7.90005C15.7189 7.65005 15.4189 7.55005 15.1189 7.55005C14.8189 7.55005 14.5189 7.65005 14.2689 7.90005L8.71887 13.5"
                 stroke="white"
-                stroke-width="2"
-                stroke-miterlimit="10"
-                stroke-linecap="round"
+                strokeWidth="2"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
               />
               <path
                 d="M9.51894 12L0.468937 21.05C-0.181063 21.75 -0.131063 22.8 0.468937 23.45L1.01894 24C1.36894 24.3 1.81894 24.5 2.21894 24.5C2.66894 24.5 3.06894 24.35 3.41894 24L12.4689 14.95L9.51894 12Z"
@@ -57,7 +63,7 @@ class SurpriseLink extends Component {
             </svg>
           </span>
           Surprise Me
-        </Link>
+        </button>
       </div>
     );
   }

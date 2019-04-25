@@ -1,41 +1,53 @@
 import React, { Component } from "react";
+import moment from "moment";
 
-import { get } from "../helpers/requests";
+import "../styles/Playlist.scss";
 
 class Playlist extends Component {
-  state = {
-    songs: []
-  };
-
-  componentDidMount = () => {
-    get(`api/song/${this.props.currentSong.number}/playlist`).then(response => {
-      this.setState({ songs: response.data });
-    });
-  };
-
   createPlayList = () => {
-    if (this.state.songs) {
-      return [this.props.currentSong, ...this.state.songs].map(song => {
+    if (this.props.songs) {
+      return this.props.songs.map((song, i) => {
         return (
-          <div key={song.number}>
-            <p>{song.title}</p>
-            <img src={song.imagePathSmall} alt={song.title} />
+          <div
+            className="Playlist__Item"
+            key={i}
+            onClick={() => this.props.swapHeroSong(song.number)}
+          >
+            <div
+              className="Playlist__Item--Hero"
+              style={{ backgroundImage: `url(` + song.imagePath + `)` }}
+            />
+            <div className="Date">
+              <p className="Large">{`${moment(song.date).format("DD")}`}</p>
+              <p className="Small">{`${moment(song.date).format(
+                "MMM 'YY"
+              )}`}</p>
+            </div>
+            {!i && <p>Now Playing</p>}
+            <div className="Playlist__Item--Meta">
+              <p>{song.title}</p>
+              {this.createTagList(song)}
+            </div>
           </div>
         );
       });
     }
   };
 
+  createTagList = song => {
+    return song.tagNames.map((tag, i) => {
+      return (
+        <div className="Tag" key={i} tag={tag}>
+          {tag}
+        </div>
+      );
+    });
+  };
+
   render() {
     const playlist = this.createPlayList();
 
-    return (
-      <div className="Playlist">
-        <h3>Playlist</h3>
-
-        {playlist}
-      </div>
-    );
+    return <div className="Playlist">{playlist}</div>;
   }
 }
 

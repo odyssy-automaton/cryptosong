@@ -17,7 +17,7 @@ class Header extends Component {
           </a>
         </div>
         <nav className="Header__Nav" />
-        <SurpriseLink />
+        <SurpriseLink swapHeroSong={this.props.swapHeroSong} />
       </div>
     );
   }
