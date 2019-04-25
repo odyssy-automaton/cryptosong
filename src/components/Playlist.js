@@ -8,7 +8,6 @@ class Playlist extends Component {
   };
 
   componentDidMount = () => {
-    console.log(this.props);
     get(`api/song/${this.props.currentSong.number}/playlist`).then(response => {
       this.setState({ songs: response.data });
     });
