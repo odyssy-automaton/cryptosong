@@ -1,16 +1,22 @@
 import React, { Component } from "react";
+
+import SurpriseLink from "./SurpriseLink";
+
 import "../styles/Header.scss";
 
 class Header extends Component {
   render() {
     return (
       <div className="Header">
-      <div className="Header__Brand">
-        <a style={{ display: "block" }} href="/">
-          <img src="../../img/SongADayWorld__Logo--Standard.png"/>
-        </a>
-      </div>
-      <nav className="Header__Nav"></nav>
+        <div className="Header__Brand">
+          <a style={{ display: "block" }} href="/">
+            <img 
+              src="../../img/SongADayWorld__Logo--Standard.png"
+              alt="Song A Day World"
+            />
+          </a>
+        </div>
+        <nav className="Header__Nav"><SurpriseLink /></nav>
         <button className="Button" href="">
           <span className="Icon">
             <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -20,7 +26,7 @@ class Header extends Component {
               <path d="M10.9689 15.75L16.5689 10.15C17.0189 9.70005 17.0189 8.95005 16.5689 8.45005L15.9689 7.90005C15.7189 7.65005 15.4189 7.55005 15.1189 7.55005C14.8189 7.55005 14.5189 7.65005 14.2689 7.90005L8.71887 13.5" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"/>
               <path d="M9.51894 12L0.468937 21.05C-0.181063 21.75 -0.131063 22.8 0.468937 23.45L1.01894 24C1.36894 24.3 1.81894 24.5 2.21894 24.5C2.66894 24.5 3.06894 24.35 3.41894 24L12.4689 14.95L9.51894 12Z" fill="white"/>
             </svg>
-          </span> Surprise Me
+          </span> 
         </button>
       </div>
     );
