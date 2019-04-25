@@ -1,27 +1,16 @@
 import React, { Component } from "react";
 import moment from "moment";
 
-import { get } from "../helpers/requests";
 import "../styles/Playlist.scss";
 
 class Playlist extends Component {
-  state = {
-    songs: []
-  };
-
-  componentDidMount = () => {
-    get(`api/song/${this.props.currentSong.number}/playlist`).then(response => {
-      this.setState({ songs: response.data });
-    });
-  };
-
   createPlayList = () => {
-    if (this.state.songs) {
-      return [this.props.currentSong, ...this.state.songs].map((song, i) => {
+    if (this.props.songs) {
+      return this.props.songs.map((song, i) => {
         return (
           <div
             className="Playlist__Item"
-            key={song.number}
+            key={i}
             onClick={() => this.props.swapHeroSong(song.number)}
           >
             <div
@@ -34,7 +23,7 @@ class Playlist extends Component {
                 "MMM 'YY"
               )}`}</p>
             </div>
-            {!i && <p>Playing</p>}
+            {!i && <p>Now Playing</p>}
             <div className="Playlist__Item--Meta">
               <p>{song.title}</p>
               {this.createTagList(song)}

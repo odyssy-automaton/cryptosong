@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
 import { get } from "../helpers/requests";
 
@@ -9,6 +8,10 @@ class SurpriseLink extends Component {
   };
 
   componentDidMount = () => {
+    this.getSurprise();
+  };
+
+  getSurprise = () => {
     get("api/songs/count").then(count => {
       const songNumber =
         Math.floor(Math.random() * Math.floor(+count.data.number - 1)) + 1;
@@ -17,12 +20,15 @@ class SurpriseLink extends Component {
     });
   };
 
-  render() {
-    const { songNumber } = this.state;
+  handleClick = () => {
+    this.props.swapHeroSong(this.state.songNumber);
+    this.getSurprise();
+  };
 
+  render() {
     return (
       <div className="SurpriseLink">
-        <Link to={`song/${songNumber}`} className="Button">
+        <button className="Button" onClick={this.handleClick}>
           <span className="Icon">
             <svg
               width="25"
@@ -57,7 +63,7 @@ class SurpriseLink extends Component {
             </svg>
           </span>
           Surprise Me
-        </Link>
+        </button>
       </div>
     );
   }

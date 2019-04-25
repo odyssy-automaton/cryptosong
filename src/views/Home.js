@@ -9,27 +9,27 @@ import "../styles/Global.scss";
 import "../styles/Home.scss";
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      song: null
-    };
-  }
+  state = {
+    song: null,
+    songs: []
+  };
 
   componentDidMount() {
-    this.getHeroSong();
+    this.getSongs();
   }
 
-  getHeroSong = songNumber => {
+  getSongs = songNumber => {
     songNumber = songNumber || 1;
 
     get(`api/song/${songNumber}`).then(response => {
-      this.setState({ song: response.data });
+      get(`api/song/${response.data.number}/playlist`).then(songs => {
+        this.setState({ song: response.data, songs: songs.data });
+      });
     });
   };
 
   swapHeroSong = songNumber => {
-    this.getHeroSong(songNumber);
+    this.getSongs(songNumber);
   };
 
   createTagList = () => {
@@ -45,18 +45,21 @@ class Home extends Component {
   };
 
   render() {
-    const { song } = this.state;
+    const { song, songs } = this.state;
     const tagList = this.createTagList();
 
     return (
       <div>
-        <Header />
+        <Header swapHeroSong={this.swapHeroSong} />
         {song ? (
           <Fragment>
             <HomeHero song={song} tagList={tagList} />
             <div className="">
               <h3>Playlist</h3>
-              <Playlist currentSong={song} swapHeroSong={this.swapHeroSong} />
+              <Playlist
+                songs={[song, ...songs]}
+                swapHeroSong={this.swapHeroSong}
+              />
             </div>
           </Fragment>
         ) : null}
