@@ -1,9 +1,8 @@
 import React, { Component, Fragment } from "react";
-import { Embed } from "semantic-ui-react";
-import moment from "moment";
 
 import { get } from "../helpers/requests";
 import Header from "../components/Header";
+import HomeHero from "../components/HomeHero";
 import Playlist from "../components/Playlist";
 
 import "../styles/Global.scss";
@@ -18,10 +17,20 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    get(`api/song/1`).then(response => {
+    this.getHeroSong();
+  }
+
+  getHeroSong = songNumber => {
+    songNumber = songNumber || 1;
+
+    get(`api/song/${songNumber}`).then(response => {
       this.setState({ song: response.data });
     });
-  }
+  };
+
+  swapHeroSong = songNumber => {
+    this.getHeroSong(songNumber);
+  };
 
   createTagList = () => {
     if (this.state.song) {
@@ -44,52 +53,10 @@ class Home extends Component {
         <Header />
         {song ? (
           <Fragment>
-            <div
-              className="Hero"
-              style={{ backgroundImage: `url(` + song.imagePathBg + `)` }}
-            >
-              <div className="Left">
-                <img src={song.imagePathJon} alt={song.title} />
-              </div>
-              <div className="Right">
-                <div className="Card">
-                  <div className="Card__Header">
-                    <div className="Card__Header--Title">
-                      <h2>{song.title}</h2>
-                      <p>
-                        {`Song ${song.number} | ${moment(song.date).format(
-                          "MMMM Do, YYYY"
-                        )}`}
-                      </p>
-                    </div>
-                    <div className="Card__Header--Date">
-                      <p className="Large">{`${moment(song.date).format(
-                        "DD"
-                      )}`}</p>
-                      <p className="Small">{`${moment(song.date).format(
-                        "MMM 'YY"
-                      )}`}</p>
-                    </div>
-                  </div>
-                  <div className="Card__Video">
-                    <Embed
-                      id={song.videoid}
-                      placeholder={`https://img.youtube.com/vi/${
-                        song.videoid
-                      }/mqdefault.jpg`}
-                      source="youtube"
-                    />
-                  </div>
-                  <div className="Card__Meta">
-                    <p>{song.description}</p>
-                    <p>{tagList}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <HomeHero song={song} tagList={tagList} />
             <div className="">
               <h3>Playlist</h3>
-              <Playlist currentSong={song} />
+              <Playlist currentSong={song} swapHeroSong={this.swapHeroSong} />
             </div>
           </Fragment>
         ) : null}
