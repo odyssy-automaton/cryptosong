@@ -1,0 +1,28 @@
+service: od-cryptosong-test
+
+frameworkVersion: ">=1.1.0 <2.0.0"
+
+package:
+  exclude:
+    - image-layers/**
+    - public/**
+    - src/**
+    - node_modules/**
+    - ops.md
+    - readme.md
+
+plugins:
+  - serverless-plugin-include-dependencies
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: us-east-1
+
+functions:
+  app:
+    handler: server/index.main
+    events:
+      - http: ANY /
+      - http: "ANY {proxy+}"
