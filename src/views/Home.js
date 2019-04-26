@@ -49,17 +49,19 @@ class Home extends Component {
     const tagList = this.createTagList();
 
     return (
-      <div>
+      <div className="Home">
         <Header swapHeroSong={this.swapHeroSong} />
         {song ? (
           <Fragment>
             <HomeHero song={song} tagList={tagList} />
-            <div className="">
-              <h3>Playlist</h3>
-              <Playlist
-                songs={[song, ...songs]}
-                swapHeroSong={this.swapHeroSong}
-              />
+            <div className="Container--Standard">
+              <div className="Container__Contents">
+                <h3>Current Playlist: All Songs</h3>
+                <Playlist
+                  songs={[song, ...songs]}
+                  swapHeroSong={this.swapHeroSong}
+                />
+              </div>
             </div>
           </Fragment>
         ) : null}

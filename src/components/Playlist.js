@@ -13,20 +13,26 @@ class Playlist extends Component {
             key={i}
             onClick={() => this.props.swapHeroSong(song.number)}
           >
+            {!i && <div className="Now">Now Playing</div>}
             <div
               className="Playlist__Item--Hero"
               style={{ backgroundImage: `url(` + song.imagePath + `)` }}
             />
+            
             <div className="Date">
               <p className="Large">{`${moment(song.date).format("DD")}`}</p>
               <p className="Small">{`${moment(song.date).format(
                 "MMM 'YY"
               )}`}</p>
             </div>
-            {!i && <p>Now Playing</p>}
+            
             <div className="Playlist__Item--Meta">
-              <p>{song.title}</p>
-              {this.createTagList(song)}
+              <div className="Inner">
+                <h3>{song.title}</h3>
+                <div className="Tags">
+                  {this.createTagList(song)}
+                </div>
+              </div>
             </div>
           </div>
         );
