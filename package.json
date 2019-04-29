@@ -59,6 +59,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "serverless-plugin-include-dependencies": "^3.2.1"
+    "serverless-plugin-include-dependencies": "^3.2.1",
+    "serverless-single-page-app-plugin": "^1.0.2"
   }
 }
