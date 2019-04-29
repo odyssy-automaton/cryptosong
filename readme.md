@@ -52,16 +52,9 @@
    ```
 
    ```
-   Hosted in app example to return '/jons/2008/1230786000-in-the-time-of-the-gods.png'
+   Hosted in app or in an s3 relative to where the other static files are hosted. Example to return '/jons/2008/1230786000-in-the-time-of-the-gods.png'
 
    IMAGE_HOST=jons
-   ```
-
-   ```
-   if hosting the pwa static files in s3 via cloadfront you should drop the files in the same bucket the app will be uploaded to.
-
-   IMAGE_HOST=jons
-
    ```
 
 7. Start the development servers
