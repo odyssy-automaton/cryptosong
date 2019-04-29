@@ -1,31 +1,70 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+
 import { get } from "../helpers/requests";
+import Header from "../components/Header";
+import HomeHero from "../components/HomeHero";
+import Playlist from "../components/Playlist";
+
+import "../styles/Global.scss";
+import "../styles/Home.scss";
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      song: null
-    };
-  }
+  state = {
+    song: null,
+    songs: []
+  };
 
   componentDidMount() {
-    get(`api/song/1`).then(response => {
-      console.log(response.data);
-
-      this.setState({ song: response.data });
-    });
+    this.getSongs();
   }
 
-  componentWillUnmount() {}
+  getSongs = songNumber => {
+    songNumber = songNumber || 1;
+
+    get(`api/song/${songNumber}`).then(response => {
+      get(`api/song/${response.data.number}/playlist`).then(songs => {
+        this.setState({ song: response.data, songs: songs.data });
+      });
+    });
+  };
+
+  swapHeroSong = songNumber => {
+    this.getSongs(songNumber);
+  };
+
+  createTagList = () => {
+    if (this.state.song) {
+      return this.state.song.tagNames.map((tag, i) => {
+        return (
+          <div className="Tag" key={i} tag={tag}>
+            {tag}
+          </div>
+        );
+      });
+    }
+  };
 
   render() {
-    const { song } = this.state;
+    const { song, songs } = this.state;
+    const tagList = this.createTagList();
 
     return (
-      <div>
-        <h1>SAD WORLD</h1>
-        {song ? <p>{song.title}</p> : null}
+      <div className="Home">
+        <Header swapHeroSong={this.swapHeroSong} />
+        {song ? (
+          <Fragment>
+            <HomeHero song={song} tagList={tagList} />
+            <div className="Container--Standard">
+              <div className="Container__Contents">
+                <h3>Current Playlist: All Songs</h3>
+                <Playlist
+                  songs={[song, ...songs]}
+                  swapHeroSong={this.swapHeroSong}
+                />
+              </div>
+            </div>
+          </Fragment>
+        ) : null}
       </div>
     );
   }

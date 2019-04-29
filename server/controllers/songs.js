@@ -54,7 +54,6 @@ module.exports.getSongCount = (req, res) => {
 module.exports.getSongWithTags = (req, res) => {
   const number = parseInt(req.query.id);
   SongModel.getSongByNumberWithAllPossibleTags(number).then(result => {
-    // console.log(result)
     res.send(result);
   });
 };
@@ -69,4 +68,17 @@ module.exports.getSongsByTags = (req, res) => {
 module.exports.getSongByID = (req, res) => {
   const songNum = req.params.id;
   SongModel.getSongByNumber(songNum).then(song => res.send(song));
+};
+
+module.exports.getSongPlaylist = (req, res) => {
+  const songNum = req.params.id;
+  const query = new Array(3).fill(+songNum + 1).map((n, i) => {
+    return { number: n + i };
+  });
+
+  SongModel.Song.find()
+    .or(query)
+    .then(songs => {
+      res.send(songs);
+    });
 };

@@ -10,7 +10,7 @@ const getHueForDate = require("../../src/helpers/hueConversion.js")
   .getHueForDate;
 
 const rootDir = __dirname + "/../../";
-const layersDir = rootDir + "public/img/artlayers";
+const layersDir = rootDir + "image-layers/artlayers";
 const outputDir = rootDir + "public/";
 
 const imagePath = path => layersDir + path;
@@ -149,6 +149,7 @@ const createImage = async (song, imagePathsToCombine) => {
   }
 
   // write outputs
+  // TODO: this need to be changed to match the new paths in S3
   let largeImagePath = path.join(outputDir, song.imagePath),
     smallImagePath = path.join(outputDir, song.imagePathSmall);
   gm(newImageBuffer).write(largeImagePath, err => {

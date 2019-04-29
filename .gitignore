@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
@@ -10,6 +8,7 @@
 
 # production
 /build
+/app
 
 # misc
 .DS_Store
@@ -27,8 +26,6 @@ yarn-error.log*
 
 public/img/2008
 public/img/2009
-public/img/2010
-public/img/jons
 
 db/
 
@@ -37,3 +34,7 @@ out/
 
 filenames.txt
 unique-tags.txt
+
+ops.md
+
+.serverless

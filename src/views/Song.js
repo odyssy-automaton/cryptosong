@@ -31,26 +31,26 @@ class Song extends Component {
     // rarity = Math.floor(Math.random() * 100) + "%";
 
     song.instruments.map(instrument => {
-      instruments.push(instrument.name);
+      return instruments.push(instrument.name);
     });
 
     song.tags.map(tag => {
-      tags.push(tag.name);
+      return tags.push(tag.name);
     });
 
     return (
       <div>
-        <a href="" className="page-nav previous-song">
+        <span className="page-nav previous-song">
           <span className="text">The Day Before</span>
-        </a>
-        <a href="" className="page-nav next-song">
+        </span>
+        <span href="" className="page-nav next-song">
           <span className="text">The Next Day</span>
-        </a>
+        </span>
 
         <div className="song-header-container">
           <AlbumCanvas
             width={300}
-            backgroundImage={"/" + song.imagePath}
+            backgroundImage={song.imagePath}
             song={song}
             songnumber="song.number"
             list={false}
@@ -68,7 +68,7 @@ class Song extends Component {
                 return (
                   <span key={key}>
                     <a href={url}>{tag}</a>
-                    {tags.length == key + 1 ? " " : ", "}
+                    {tags.length === key + 1 ? " " : ", "}
                   </span>
                 );
               })}

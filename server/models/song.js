@@ -70,12 +70,40 @@ songSchema.virtual("slug").get(function() {
   return `${this.date.getTime() / 1000}-${slugify(this.title)}`;
 });
 
-songSchema.virtual("imagePathSmall").get(function() {
-  return path.join("img", this.year.toString(), this.slug + "-small.png");
+songSchema.virtual("imagePath").get(function() {
+  // return path.join("img", this.year.toString(), this.slug + ".png");
+  return path.join(
+    process.env.IMAGE_HOST,
+    this.year.toString(),
+    this.slug + ".png"
+  );
 });
 
-songSchema.virtual("imagePath").get(function() {
-  return path.join("img", this.year.toString(), this.slug + ".png");
+songSchema.virtual("imagePathSmall").get(function() {
+  return path.join(
+    process.env.IMAGE_HOST,
+    this.year.toString(),
+    this.slug + "-small.png"
+  );
+  // return path.join("img", this.year.toString(), this.slug + "-small.png");
+});
+
+songSchema.virtual("imagePathJon").get(function() {
+  return path.join(
+    process.env.IMAGE_HOST,
+    this.year.toString(),
+    this.slug + "-jon.png"
+  );
+  // return path.join("img", this.year.toString(), this.slug + "-jon.png");
+});
+
+songSchema.virtual("imagePathBg").get(function() {
+  return path.join(
+    process.env.IMAGE_HOST,
+    this.year.toString(),
+    this.slug + "-bg.png"
+  );
+  // return path.join("img", this.year.toString(), this.slug + "-bg.png");
 });
 
 const Song = mongoose.model("Song", songSchema);
