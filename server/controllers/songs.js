@@ -72,7 +72,7 @@ module.exports.getSongByID = (req, res) => {
 
 module.exports.getSongPlaylist = (req, res) => {
   const songNum = req.params.id;
-  const query = new Array(4).fill(+songNum + 1).map((n, i) => {
+  const query = new Array(3).fill(+songNum + 1).map((n, i) => {
     return { number: n + i };
   });
 
