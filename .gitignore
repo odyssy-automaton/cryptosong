@@ -8,6 +8,7 @@
 
 # production
 /build
+/app
 
 # misc
 .DS_Store
@@ -35,3 +36,5 @@ filenames.txt
 unique-tags.txt
 
 ops.md
+
+.serverless

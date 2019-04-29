@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "aws-serverless-express": "^3.3.6",
     "axios": "^0.18.0",
     "concurrently": "^4.1.0",
     "cors": "^2.8.5",
@@ -46,8 +47,7 @@
     "server-start:prod": "NODE_ENV=production node server/index.js",
     "babel-node": "babel-node --presets env",
     "dev": "concurrently \"yarn run web-start\" \"npm run server-start\"",
-    "seed": "node ./server/scripts/seedDB.js",
-    "now-start": "yarn server-start:prod"
+    "seed": "node ./server/scripts/seedDB.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -57,5 +57,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "serverless-plugin-include-dependencies": "^3.2.1",
+    "serverless-single-page-app-plugin": "^1.0.2"
+  }
 }

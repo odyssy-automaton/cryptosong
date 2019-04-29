@@ -1,7 +1,12 @@
 import axios from "axios";
 
 const BaseUrl = () => {
-  return process.env.REACT_APP_API_HOST;
+  const host =
+    process.env.NODE_ENV === "development"
+      ? process.env.REACT_APP_API_HOST_DEV
+      : process.env.REACT_APP_API_HOST_PROD;
+
+  return host;
 };
 
 export const get = async endpoint => {
