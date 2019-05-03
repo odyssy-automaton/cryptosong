@@ -21,13 +21,6 @@ custom:
 provider:
   name: aws
   runtime: nodejs8.10
-  # vpc:
-  #   securityGroupIds:
-  #     - sg-a01a3dda
-  #   subnetIds:
-  #     - subnet-45f99020
-  #     - subnet-03c5724a
-  #     - subnet-e9119ae5
   stage: dev
   region: us-east-1
 

@@ -1,27 +1,17 @@
 require("dotenv").config();
 const ProgressBar = require("progress");
 const fs = require("fs");
-const certFileBuf = fs.readFileSync(
-  __dirname + "/../rds-combined-ca-bundle.pem"
-);
 
 const Schema = require("mongoose").Schema;
 
 const mongoose = require("mongoose");
 mongoose.Promise = Promise;
 
-const isInLambda = !!process.env.LAMBDA_TASK_ROOT;
 
 const options = {
   promiseLibrary: global.Promise,
   useNewUrlParser: true
 };
-
-// if (isInLambda) {
-//   options.ssl = true;
-//   options.sslCA = certFileBuf;
-// }
-
 mongoose.connect(process.env.MONGODB_HOST, options);
 
 const db = mongoose.connection;
