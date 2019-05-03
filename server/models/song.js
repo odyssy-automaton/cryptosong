@@ -464,7 +464,7 @@ module.exports.getSongsByTagNames = tags => {
  */
 module.exports.totalSongs = () => {
   return new Promise((resolve, reject) => {
-    Song.count({}, (err, number) => {
+    Song.countDocuments({}, (err, number) => {
       if (err) {
         reject(err);
         return;

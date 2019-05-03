@@ -74,8 +74,8 @@ resources:
               #   OriginAccessIdentity: origin-access-identity/cloudfront/E127EXAMPLE51Z
           Enabled: "true"
           ## Uncomment the following section in case you are using a custom domain
-          # Aliases:
-          # - mysite.example.com
+          Aliases:
+            - sadw-staging.odyssy.io
           DefaultRootObject: index.html
           ## Since the Single Page App is taking care of the routing we need to make sure every path is served with index.html
           ## The only exception are files that actually exist e.h. app.js, reset.css
@@ -103,7 +103,9 @@ resources:
             ViewerProtocolPolicy: redirect-to-https
           ## The certificate to use when viewers use HTTPS to request objects.
           ViewerCertificate:
-            CloudFrontDefaultCertificate: "true"
+            # CloudFrontDefaultCertificate: "true"
+            AcmCertificateArn: arn:aws:acm:us-east-1:947598263436:certificate/51029c9f-c778-4ebf-b6a2-08d9735685bb
+            SslSupportMethod: sni-only
           ## Uncomment the following section in case you want to enable logging for CloudFront requests
           # Logging:
           #   IncludeCookies: 'false'

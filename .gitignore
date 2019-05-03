@@ -38,3 +38,4 @@ unique-tags.txt
 ops.md
 
 .serverless
+*.pem

@@ -1,12 +1,15 @@
-require('dotenv').config()
-const Fawn = require('fawn');
-const mongoose = require('mongoose');
+require("dotenv").config();
+const fs = require("fs");
+const Fawn = require("fawn");
+const mongoose = require("mongoose");
 mongoose.Promise = Promise;
 
-mongoose.connect(process.env.MONGODB_HOST, {
+const options = {
   promiseLibrary: global.Promise,
   useNewUrlParser: true
-});
+};
+
+mongoose.connect(process.env.MONGODB_HOST, options);
 
 Fawn.init(mongoose);
 
