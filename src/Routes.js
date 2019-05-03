@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import Home from "./views/Home";
 import Songs from "./views/Songs";
 import Song from "./views/Song";
+import FourOhFour from "./views/FourOhFour";
 // import SongInputForm from "./components/editing/SongInputForm";
 // import Collection from "./components/editing/Collection";
 // import ImportSongData from "./components/editing/ImportSongData";
@@ -91,6 +92,7 @@ const Routes = () => (
     path="/admin/import-song-data"
     render={props => <ImportSongData {...props} />}
   /> */}
+    <Route component={FourOhFour} />
   </Switch>
 );
 
