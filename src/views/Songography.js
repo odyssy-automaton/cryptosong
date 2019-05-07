@@ -6,7 +6,8 @@ import { get } from "../helpers/requests";
 import Header from "../components/Header";
 import AlbumCanvas from "../components/AlbumCanvas";
 
-class Songs extends Component {
+class Songography extends Component {
+  _isMounted = false;
   state = {
     songs: [],
     size: "md",
@@ -15,16 +16,27 @@ class Songs extends Component {
   };
 
   componentDidMount() {
+    this._ismounted = true;
+    this.getSongs();
+  }
+
+  componentWillUnmount() {
+    this._ismounted = false;
+  }
+
+  getSongs = () => {
     get("api/songs").then(songs => {
       console.log(songs.data);
-      this.setState({ songs: songs.data, loading: false }, () => {
-        // this.jsSearch = new JsSearch.Search("description");
-        // this.jsSearch.addIndex("title");
-        // this.jsSearch.addIndex("tags");
-        // this.jsSearch.addDocuments(songs.data);
-      });
+      if (this._ismounted) {
+        this.setState({ songs: songs.data, loading: false }, () => {
+          // this.jsSearch = new JsSearch.Search("description");
+          // this.jsSearch.addIndex("title");
+          // this.jsSearch.addIndex("tags");
+          // this.jsSearch.addDocuments(songs.data);
+        });
+      }
     });
-  }
+  };
 
   renderSongs(songs, sizeClass) {
     const songsByMonth = _.groupBy(songs, song =>
@@ -76,4 +88,4 @@ class Songs extends Component {
   }
 }
 
-export default Songs;
+export default Songography;

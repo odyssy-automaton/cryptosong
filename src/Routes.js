@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 
 import Home from "./views/Home";
-import Songs2 from "./views/Songs";
+import Songography from "./views/Songography";
 import Songs from "./views/AllSongs";
 import Song from "./views/Song";
 import FourOhFour from "./views/FourOhFour";
@@ -14,7 +14,11 @@ import FourOhFour from "./views/FourOhFour";
 const Routes = () => (
   <Switch>
     <Route exact path="/" render={props => <Home {...props} />} />
-    <Route exact path="/songs2" render={props => <Songs2 {...props} />} />
+    <Route
+      exact
+      path="/songography"
+      render={props => <Songography {...props} />}
+    />
     <Route
       path="/songs"
       render={props => <Songs filterBy={false} {...props} />}

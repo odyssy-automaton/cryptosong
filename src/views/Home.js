@@ -9,13 +9,19 @@ import "../styles/Global.scss";
 import "../styles/Home.scss";
 
 class Home extends Component {
+  _isMounted = false;
   state = {
     song: null,
     songs: []
   };
 
   componentDidMount() {
+    this._ismounted = true;
     this.getSongs();
+  }
+
+  componentWillUnmount() {
+    this._ismounted = false;
   }
 
   getSongs = songNumber => {
@@ -23,7 +29,9 @@ class Home extends Component {
 
     get(`api/song/${songNumber}`).then(response => {
       get(`api/song/${response.data.number}/playlist`).then(songs => {
-        this.setState({ song: response.data, songs: songs.data });
+        if (this._ismounted) {
+          this.setState({ song: response.data, songs: songs.data });
+        }
       });
     });
   };
