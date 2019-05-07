@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-// import { Stage, Image, Layer, Rect, Text } from "react-konva";
 import moment from "moment";
-
-// import mergeImages from "../helpers/mergeImages.js";
 
 export default class AlbumCanvas extends Component {
   constructor(props) {
@@ -10,15 +7,6 @@ export default class AlbumCanvas extends Component {
     this.state = {
       mergedImage: ""
     };
-    // console.log((Number.parseInt(this.props.songnumber, 10) + 240) % 360)
-  }
-
-  componentDidMount() {
-    // const { song } = this.props;
-  }
-
-  componentWillReceiveProps(nextProps) {
-    // const { song } = nextProps;
   }
 
   render() {
@@ -73,25 +61,5 @@ export default class AlbumCanvas extends Component {
         />
       );
     }
-
-    // <Stage width={this.props.width} height={this.props.height} className="album-art" style={{float: 'left', border: '5px solid black'}}>
-    //   <Layer>
-    //   <Rect
-    //     x={0}
-    //     y={0}
-    //     width={500}
-    //     height={500}
-    //     fill={`hsl(${hue},100%,90%)`}
-    //     shadowBlur={2}
-    //   />
-    //   {this.props.images.map(image => {
-    //     // return <SongImage key={image} imageSrc={`/images/${image}`} />
-    //     return <SongImage key={image} imageSrc={`/images/${image}`} />
-    //   })}
-    //   </Layer>
-    //   <Layer>
-    //   <Text text={currentNumber} fontSize={30} fontFamily='Helvetica' fill='black'/>
-    //   </Layer>
-    // </Stage>
   }
 }
