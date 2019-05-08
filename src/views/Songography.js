@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import _ from "lodash";
 import moment from "moment";
+import * as JsSearch from "js-search";
 
 import { get } from "../helpers/requests";
 import Header from "../components/Header";
@@ -8,10 +9,13 @@ import AlbumCanvas from "../components/AlbumCanvas";
 
 class Songography extends Component {
   _isMounted = false;
+  jsSearch = null;
   state = {
     songs: [],
     size: "md",
     imageSize: 100,
+    searchInputValue: "",
+    currentSearch: "",
     loading: true
   };
 
@@ -29,10 +33,12 @@ class Songography extends Component {
       console.log(songs.data);
       if (this._ismounted) {
         this.setState({ songs: songs.data, loading: false }, () => {
-          // this.jsSearch = new JsSearch.Search("description");
-          // this.jsSearch.addIndex("title");
-          // this.jsSearch.addIndex("tags");
-          // this.jsSearch.addDocuments(songs.data);
+          this.jsSearch = new JsSearch.Search("description");
+          this.jsSearch.addIndex("title");
+
+          //todo: tag search not working
+          this.jsSearch.addIndex("tags");
+          this.jsSearch.addDocuments(songs.data);
         });
       }
     });
@@ -40,8 +46,9 @@ class Songography extends Component {
 
   renderSongs(songs, sizeClass) {
     const songsByMonth = _.groupBy(songs, song =>
-      moment(song.date).format("MMMM")
+      moment(song.date).format("MMMM YYYY")
     );
+
     return _.map(songsByMonth, (monthSongs, month) => {
       const songMarkup = monthSongs.map((song, key) => (
         <AlbumCanvas
