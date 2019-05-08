@@ -20,14 +20,16 @@ const Routes = () => (
       render={props => <Songography {...props} />}
     />
     <Route
+      path="/songography/tag/:tagname"
+      render={props => <Songography {...props} filterBy="tags" />}
+    />
+
+    <Route
       path="/songs"
       render={props => <Songs filterBy={false} {...props} />}
     />
     <Route path="/song/:id" component={Song} />
-    <Route
-      path="/songs/tag/:tagname"
-      render={props => <Songs {...props} filterBy="tags" />}
-    />
+
     {/* 
   <Route path="/song/new" component={SongInputForm} />
   <Route

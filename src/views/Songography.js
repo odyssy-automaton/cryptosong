@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import _ from "lodash";
 import moment from "moment";
 import * as JsSearch from "js-search";
@@ -29,8 +30,14 @@ class Songography extends Component {
   }
 
   getSongs = () => {
-    get("api/songs").then(songs => {
+    let endPoint = "api/songs";
+    if (this.props.filterBy === "tags") {
+      endPoint = `api/find_tags?tags=${this.props.match.params.tagname}`;
+    }
+
+    get(endPoint).then(songs => {
       console.log(songs.data);
+
       if (this._ismounted) {
         this.setState({ songs: songs.data, loading: false }, () => {
           this.jsSearch = new JsSearch.Search("description");
@@ -131,4 +138,4 @@ class Songography extends Component {
   }
 }
 
-export default Songography;
+export default withRouter(Songography);
