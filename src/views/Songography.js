@@ -17,6 +17,7 @@ class Songography extends Component {
     imageSize: 100,
     searchInputValue: "",
     currentSearch: "",
+    sortOrder: "desc",
     loading: true
   };
 
@@ -66,7 +67,12 @@ class Songography extends Component {
       filteredSongs = this.jsSearch.search(this.state.currentSearch);
     }
 
-    return filteredSongs;
+    return _.orderBy(filteredSongs, "number", this.state.sortOrder);
+  };
+
+  sortBy = () => {
+    const newOrder = this.state.sortOrder === "asc" ? "desc" : "asc";
+    this.setState({ sortOrder: newOrder });
   };
 
   renderSongs(songs, sizeClass) {
@@ -101,7 +107,7 @@ class Songography extends Component {
   }
 
   render() {
-    const { size, loading } = this.state;
+    const { size, loading, sortOrder } = this.state;
     const songs = this.filterSongs(this.state.songs);
     const sizeClass = `size-${size}`;
 
@@ -131,6 +137,11 @@ class Songography extends Component {
               ? "loading songs"
               : `${songs.length} ${songs.length === 1 ? "song" : "songs"} `}
           </h4>
+          <div>
+            <button onClick={this.sortBy}>
+              Latest {sortOrder === "asc" ? `(up arrow)` : `(down arrow)`}
+            </button>
+          </div>
           {this.renderSongs(songs, sizeClass)}
         </div>
       </div>
