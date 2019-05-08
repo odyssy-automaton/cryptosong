@@ -4,6 +4,7 @@ import { get } from "../helpers/requests";
 import Header from "../components/Header";
 import HomeHero from "../components/HomeHero";
 import Playlist from "../components/Playlist";
+import Tag from "../components/Tag";
 
 import "../styles/Global.scss";
 import "../styles/Home.scss";
@@ -43,11 +44,7 @@ class Home extends Component {
   createTagList = () => {
     if (this.state.song) {
       return this.state.song.tagNames.map((tag, i) => {
-        return (
-          <div className="Tag" key={i} tag={tag}>
-            {tag}
-          </div>
-        );
+        return <Tag tag={tag} key={i} />;
       });
     }
   };
