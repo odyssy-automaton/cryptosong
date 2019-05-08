@@ -59,7 +59,8 @@ module.exports.getSongWithTags = (req, res) => {
 };
 
 module.exports.getSongsByTags = (req, res) => {
-  const tags = req.query.tags;
+  const tags = req.query.tags.split(",");
+
   SongModel.getSongsByTagNames(tags).then(response => {
     res.send(response);
   });

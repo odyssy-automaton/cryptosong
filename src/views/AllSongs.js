@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Container } from "semantic-ui-react";
 import Select from "react-select";
 import _ from "lodash";
-// import axios from "axios";
 import moment from "moment";
 import * as JsSearch from "js-search";
 
@@ -17,7 +16,7 @@ import PageHeader from "../components/PageHeader";
 import "../styles/songs.scss";
 // import { runInThisContext } from 'vm';
 
-class SearchBy extends Component {
+class Songs extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -365,4 +364,4 @@ class SearchBy extends Component {
   }
 }
 
-export default SearchBy;
+export default Songs;

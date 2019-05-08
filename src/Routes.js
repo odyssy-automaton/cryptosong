@@ -2,7 +2,8 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 
 import Home from "./views/Home";
-import Songs from "./views/Songs";
+import Songography from "./views/Songography";
+import Songs from "./views/AllSongs";
 import Song from "./views/Song";
 import FourOhFour from "./views/FourOhFour";
 // import SongInputForm from "./components/editing/SongInputForm";
@@ -14,15 +15,22 @@ const Routes = () => (
   <Switch>
     <Route exact path="/" render={props => <Home {...props} />} />
     <Route
-      path="/songs"
-      render={props => <Songs filterBy={false} {...props} />}
+      exact
+      path="/songography"
+      render={props => <Songography {...props} />}
     />
-    <Route path="/song/:id" component={Song} />
     <Route
-      path="/songs/tag/:tagname"
-      render={props => <Songs {...props} filterBy="tags" />}
+      path="/songography/tag/:tagname"
+      render={props => <Songography {...props} filterBy="tags" />}
     />
+
+    <Route path="/song/:id" component={Song} />
+
     {/* 
+  <Route
+    path="/songs"
+    render={props => <Songs filterBy={false} {...props} />}
+  />
   <Route path="/song/new" component={SongInputForm} />
   <Route
     path="/admin/song/:id/edit"

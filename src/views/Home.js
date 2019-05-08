@@ -4,18 +4,25 @@ import { get } from "../helpers/requests";
 import Header from "../components/Header";
 import HomeHero from "../components/HomeHero";
 import Playlist from "../components/Playlist";
+import Tag from "../components/Tag";
 
 import "../styles/Global.scss";
 import "../styles/Home.scss";
 
 class Home extends Component {
+  _isMounted = false;
   state = {
     song: null,
     songs: []
   };
 
   componentDidMount() {
+    this._ismounted = true;
     this.getSongs();
+  }
+
+  componentWillUnmount() {
+    this._ismounted = false;
   }
 
   getSongs = songNumber => {
@@ -23,7 +30,9 @@ class Home extends Component {
 
     get(`api/song/${songNumber}`).then(response => {
       get(`api/song/${response.data.number}/playlist`).then(songs => {
-        this.setState({ song: response.data, songs: songs.data });
+        if (this._ismounted) {
+          this.setState({ song: response.data, songs: songs.data });
+        }
       });
     });
   };
@@ -35,11 +44,7 @@ class Home extends Component {
   createTagList = () => {
     if (this.state.song) {
       return this.state.song.tagNames.map((tag, i) => {
-        return (
-          <div className="Tag" key={i} tag={tag}>
-            {tag}
-          </div>
-        );
+        return <Tag tag={tag} key={i} />;
       });
     }
   };

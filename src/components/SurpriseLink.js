@@ -3,20 +3,28 @@ import React, { Component } from "react";
 import { get } from "../helpers/requests";
 
 class SurpriseLink extends Component {
+  _isMounted = false;
   state = {
     songNumber: null
   };
 
   componentDidMount = () => {
+    this._isMounted = true;
     this.getSurprise();
   };
+
+  componentWillUnmount() {
+    this._ismounted = false;
+  }
 
   getSurprise = () => {
     get("api/songs/count").then(count => {
       const songNumber =
         Math.floor(Math.random() * Math.floor(+count.data.number - 1)) + 1;
 
-      this.setState({ songNumber });
+      if (this._ismounted) {
+        this.setState({ songNumber });
+      }
     });
   };
 
