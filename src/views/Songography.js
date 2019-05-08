@@ -35,13 +35,31 @@ class Songography extends Component {
         this.setState({ songs: songs.data, loading: false }, () => {
           this.jsSearch = new JsSearch.Search("description");
           this.jsSearch.addIndex("title");
-
-          //todo: tag search not working
-          this.jsSearch.addIndex("tags");
+          this.jsSearch.addIndex("tagNames");
           this.jsSearch.addDocuments(songs.data);
         });
       }
     });
+  };
+
+  onSearchKeyPress = e => {
+    if (e.key === "Enter") {
+      this.setState({ currentSearch: this.state.searchInputValue });
+    }
+  };
+
+  onSearchChange = e => {
+    this.setState({ searchInputValue: e.target.value });
+  };
+
+  filterSongs = songs => {
+    let filteredSongs = songs;
+
+    if (this.jsSearch && !_.isEmpty(this.state.currentSearch)) {
+      filteredSongs = this.jsSearch.search(this.state.currentSearch);
+    }
+
+    return filteredSongs;
   };
 
   renderSongs(songs, sizeClass) {
@@ -76,12 +94,30 @@ class Songography extends Component {
   }
 
   render() {
-    const { songs, size, loading } = this.state;
+    const { size, loading } = this.state;
+    const songs = this.filterSongs(this.state.songs);
     const sizeClass = `size-${size}`;
 
     return (
       <div>
         <Header />
+        <div>
+          <div style={{ display: "flex" }}>
+            <input
+              style={{
+                backgroundColor: "#fff",
+                color: "rgba(0, 0, 0, 0.87)",
+                flexShrink: 0
+              }}
+              className="global-search-input icon-search"
+              type="search"
+              placeholder="Search"
+              value={this.state.searchInputValue}
+              onKeyPress={this.onSearchKeyPress}
+              onChange={this.onSearchChange}
+            />
+          </div>
+        </div>
         <div style={{ paddingTop: 40, width: "100%" }}>
           <h4 style={{ paddingLeft: 55, paddingBottom: 10 }}>
             {!songs.length && loading
