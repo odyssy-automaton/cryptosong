@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Embed } from "semantic-ui-react";
 
 import { get } from "../helpers/requests";
@@ -7,6 +7,7 @@ import PageHeader from "../components/PageHeader";
 import moment from "moment";
 
 import "../styles/song.scss";
+import SongLayout from "../components/layout/SongLayout";
 
 class Song extends Component {
   constructor(props) {
@@ -120,18 +121,15 @@ class Song extends Component {
 
   render() {
     return (
+      <Fragment>
+        <SongLayout />
       <div>
         <PageHeader />
         {this.state.done && this.renderSong()}
         {!this.state.done && <div>Loading</div>}
       </div>
+      </Fragment>
     );
-    // const { match } = this.props;
-    // return (
-    //   <div>
-    //   {match.params.id}
-    //   </div>
-    // )
   }
 }
 
