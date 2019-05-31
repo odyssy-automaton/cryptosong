@@ -30,6 +30,8 @@ class Home extends Component {
   getSongs = songNumber => {
     songNumber = songNumber || 1;
 
+    console.log(songNumber);
+
     get(`api/song/${songNumber}`).then(response => {
       get(`api/song/${response.data.number}/playlist`).then(songs => {
         if (this._ismounted) {
@@ -51,31 +53,37 @@ class Home extends Component {
     }
   };
 
-  handelPixel = (pixelData) => {
-    console.log('handelPixel', pixelData);
-    
-    if(pixelData.length) {
-      this.setState({backgroundColor: `rgb(${pixelData[0]}, ${pixelData[1]}, ${pixelData[2]})`});
+  handelPixel = pixelData => {
+    console.log("handelPixel", pixelData);
+
+    if (pixelData.length) {
+      this.setState({
+        backgroundColor: `rgb(${pixelData[0]}, ${pixelData[1]}, ${
+          pixelData[2]
+        })`
+      });
     } else {
-      this.setState({backgroundColor: 'rgb(256, 256, 256)'});
+      this.setState({ backgroundColor: "rgb(256, 256, 256)" });
     }
-  }
+  };
 
   render() {
     const { song, songs, backgroundColor } = this.state;
     const tagList = this.createTagList();
-    const bgStyle = {backgroundColor};
-    console.log('render bgStyle', bgStyle);
-    
+    const bgStyle = { backgroundColor };
+    console.log("render bgStyle", bgStyle);
 
     return (
-      <div className="Home" >
+      <div className="Home">
         <Header swapHeroSong={this.swapHeroSong} />
         {song ? (
           <Fragment>
             <HomeHero song={song} tagList={tagList} />
-            <div style={{display: 'none' }}>
-            <HeroCanvas song={song} cb={(px) => this.handelPixel(px)} />
+            <div style={{ display: "none" }}>
+              <HeroCanvas
+                imagePathBg={song.imagePathBg}
+                cb={px => this.handelPixel(px)}
+              />
             </div>
             <div className="Container--Standard">
               <div className="Container__Contents" style={bgStyle}>
