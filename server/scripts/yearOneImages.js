@@ -179,6 +179,8 @@ async function main() {
     .populate("mainInstrument")
     .populate("secondaryInstrument");
 
+  // console.log(results);
+
   const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
   for (const song of results) {
