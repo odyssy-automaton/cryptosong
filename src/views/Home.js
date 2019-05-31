@@ -8,6 +8,7 @@ import Tag from "../components/Tag";
 
 import "../styles/Global.scss";
 import "../styles/Home.scss";
+import HeroCanvas from "../components/HeroCanvas";
 
 class Home extends Component {
   _isMounted = false;
@@ -59,6 +60,7 @@ class Home extends Component {
         {song ? (
           <Fragment>
             <HomeHero song={song} tagList={tagList} />
+            <HeroCanvas song={song} cb={(px)=>  console.log('px', px)} />
             <div className="Container--Standard">
               <div className="Container__Contents">
                 <h3>Current Playlist: All Songs</h3>
