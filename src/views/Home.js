@@ -30,8 +30,6 @@ class Home extends Component {
   getSongs = songNumber => {
     songNumber = songNumber || 1;
 
-    console.log(songNumber);
-
     get(`api/song/${songNumber}`).then(response => {
       get(`api/song/${response.data.number}/playlist`).then(songs => {
         if (this._ismounted) {
@@ -54,8 +52,6 @@ class Home extends Component {
   };
 
   handelPixel = pixelData => {
-    console.log("handelPixel", pixelData);
-
     if (pixelData.length) {
       this.setState({
         backgroundColor: `rgb(${pixelData[0]}, ${pixelData[1]}, ${
@@ -71,7 +67,6 @@ class Home extends Component {
     const { song, songs, backgroundColor } = this.state;
     const tagList = this.createTagList();
     const bgStyle = { backgroundColor };
-    console.log("render bgStyle", bgStyle);
 
     return (
       <div className="Home">
