@@ -42,7 +42,7 @@ const createImage = async (song, imagePathsToCombine) => {
   let newImage = null;
   bg = getHueForDate(song.date);
   if (bg.match("hsl")) {
-    newImage = gm(1792, 768, bg);
+    newImage = gm(3584, 1536, bg);
   } else {
     newImage = gm(bg);
   }

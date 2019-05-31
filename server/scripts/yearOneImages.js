@@ -131,7 +131,7 @@ const createImage = async (song, imagePathsToCombine) => {
   let newImage = null;
   bg = getHueForDate(song.date);
   if (bg.match("hsl")) {
-    newImage = gm(1792, 768, bg);
+    newImage = gm(3584, 1536, bg);
   } else {
     newImage = gm(bg);
   }
@@ -160,8 +160,8 @@ const createImage = async (song, imagePathsToCombine) => {
   // composite doesn't accept crop so we have to create an intermediary buffer
 
   let secondPass = gm(newImageBuffer)
-    .resize(null, 400)
-    .crop(400, 400, 280, 0)
+    .resize(null, 800)
+    .crop(800, 800, 560, 0)
     .autoOrient()
     .write(smallImagePath, err => {
       if (err) throw err;
@@ -178,6 +178,8 @@ async function main() {
     .populate("mood")
     .populate("mainInstrument")
     .populate("secondaryInstrument");
+
+  // console.log(results);
 
   const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
