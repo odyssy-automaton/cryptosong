@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 
 import Home from "./views/Home";
 import Songography from "./views/Songography";
-import Songs from "./views/AllSongs";
+// import Songs from "./views/AllSongs";
 import Song from "./views/Song";
 import FourOhFour from "./views/FourOhFour";
 // import SongInputForm from "./components/editing/SongInputForm";
