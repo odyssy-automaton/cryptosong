@@ -4,18 +4,27 @@ import { get } from "../helpers/requests";
 import Header from "../components/Header";
 import HomeHero from "../components/HomeHero";
 import Playlist from "../components/Playlist";
+import Tag from "../components/Tag";
 
 import "../styles/Global.scss";
 import "../styles/Home.scss";
+import HeroCanvas from "../components/HeroCanvas";
 
 class Home extends Component {
+  _isMounted = false;
   state = {
     song: null,
-    songs: []
+    songs: [],
+    backgroundColor: null
   };
 
   componentDidMount() {
+    this._ismounted = true;
     this.getSongs();
+  }
+
+  componentWillUnmount() {
+    this._ismounted = false;
   }
 
   getSongs = songNumber => {
@@ -23,7 +32,9 @@ class Home extends Component {
 
     get(`api/song/${songNumber}`).then(response => {
       get(`api/song/${response.data.number}/playlist`).then(songs => {
-        this.setState({ song: response.data, songs: songs.data });
+        if (this._ismounted) {
+          this.setState({ song: response.data, songs: songs.data });
+        }
       });
     });
   };
@@ -35,18 +46,28 @@ class Home extends Component {
   createTagList = () => {
     if (this.state.song) {
       return this.state.song.tagNames.map((tag, i) => {
-        return (
-          <div className="Tag" key={i} tag={tag}>
-            {tag}
-          </div>
-        );
+        return <Tag tag={tag} key={i} />;
       });
     }
   };
 
+  handelPixel = pixelData => {
+    console.log(pixelData);
+    if (pixelData.length) {
+      this.setState({
+        backgroundColor: `rgb(${pixelData[0]}, ${pixelData[1]}, ${
+          pixelData[2]
+        })`
+      });
+    } else {
+      this.setState({ backgroundColor: "rgb(0, 0, 0)" });
+    }
+  };
+
   render() {
-    const { song, songs } = this.state;
+    const { song, songs, backgroundColor } = this.state;
     const tagList = this.createTagList();
+    const bgStyle = { backgroundColor };
 
     return (
       <div className="Home">
@@ -54,9 +75,15 @@ class Home extends Component {
         {song ? (
           <Fragment>
             <HomeHero song={song} tagList={tagList} />
+            <div style={{ display: "none" }}>
+              <HeroCanvas
+                imagePathBg={song.imagePathBg}
+                cb={px => this.handelPixel(px)}
+              />
+            </div>
             <div className="Container--Standard">
-              <div className="Container__Contents">
-                <h3>Current Playlist: All Songs</h3>
+              <div className="Container__Contents" style={bgStyle}>
+                <h3 className="Playlist__Header">Current Playlist: <strong>All Songs</strong></h3>
                 <Playlist
                   songs={[song, ...songs]}
                   swapHeroSong={this.swapHeroSong}

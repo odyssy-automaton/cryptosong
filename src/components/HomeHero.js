@@ -17,7 +17,7 @@ const HomeHero = ({ song, tagList }) => {
         <div className="Card">
           <div className="Card__Header">
             <div className="Card__Header--Title">
-              <h2>{song.title}</h2>
+              <h2><a href={'/song/' + song.number}>{song.title}</a></h2>
               <p>
                 {`Song ${song.number} | ${moment(song.date).format(
                   "MMMM Do, YYYY"

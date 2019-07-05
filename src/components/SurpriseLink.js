@@ -2,27 +2,37 @@ import React, { Component } from "react";
 
 import { get } from "../helpers/requests";
 
+import "../styles/SurpriseLink.scss";
+
 class SurpriseLink extends Component {
+  _isMounted = false;
   state = {
     songNumber: null
   };
 
   componentDidMount = () => {
+    this._isMounted = true;
     this.getSurprise();
   };
 
-  getSurprise = () => {
+  componentWillUnmount() {
+    this._ismounted = false;
+  }
+
+  getSurprise = async () => {
     get("api/songs/count").then(count => {
       const songNumber =
         Math.floor(Math.random() * Math.floor(+count.data.number - 1)) + 1;
 
-      this.setState({ songNumber });
+      if (this._isMounted) {
+        this.setState({ songNumber });
+      }
     });
   };
 
   handleClick = () => {
-    this.props.swapHeroSong(this.state.songNumber);
     this.getSurprise();
+    this.props.swapHeroSong(this.state.songNumber);
   };
 
   render() {

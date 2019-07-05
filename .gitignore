@@ -24,8 +24,7 @@ yarn-error.log*
 
 .nvmrc
 
-public/img/2008
-public/img/2009
+public/jons
 
 db/
 
@@ -38,3 +37,4 @@ unique-tags.txt
 ops.md
 
 .serverless
+*.pem

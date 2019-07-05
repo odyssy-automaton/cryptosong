@@ -10,7 +10,8 @@ const SongModel = require("../models/song");
 
 const rootDir = __dirname + "/../../";
 const layersDir = rootDir + "image-layers/artlayers";
-const outputDir = rootDir + "public/";
+// const outputDir = rootDir + "public/";
+const outputDir = rootDir + "test/";
 
 const imagePath = path => layersDir + path;
 
@@ -138,8 +139,8 @@ const createImage = async (song, imagePathsToCombine) => {
   // composite doesn't accept crop so we have to create an intermediary buffer
 
   let secondPass = gm(newImageBuffer)
-    .resize(null, 400)
-    .crop(400, 400, 280, 0)
+    .resize(null, 800)
+    .crop(1100, 800, 560, 0)
     .autoOrient()
     .write(jonImagePath, err => {
       if (err) throw err;
@@ -149,6 +150,7 @@ const createImage = async (song, imagePathsToCombine) => {
 
 async function main() {
   results = await SongModel.Song.find()
+  // let results = await SongModel.Song.find({ number: 103 })
     .populate("instruments")
     .populate("beard")
     .populate("topic")
@@ -156,7 +158,7 @@ async function main() {
     .populate("mainInstrument")
     .populate("secondaryInstrument");
 
-  console.log(results);
+  // target single song here
 
   const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 

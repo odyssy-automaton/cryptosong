@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import moment from "moment";
 
+import Tag from "./Tag";
+
 import "../styles/Playlist.scss";
 
 class Playlist extends Component {
@@ -18,20 +20,18 @@ class Playlist extends Component {
               className="Playlist__Item--Hero"
               style={{ backgroundImage: `url(` + song.imagePath + `)` }}
             />
-            
+
             <div className="Date">
               <p className="Large">{`${moment(song.date).format("DD")}`}</p>
               <p className="Small">{`${moment(song.date).format(
                 "MMM 'YY"
               )}`}</p>
             </div>
-            
+
             <div className="Playlist__Item--Meta">
               <div className="Inner">
                 <h3>{song.title}</h3>
-                <div className="Tags">
-                  {this.createTagList(song)}
-                </div>
+                <div className="Tags">{this.createTagList(song)}</div>
               </div>
             </div>
           </div>
@@ -42,11 +42,7 @@ class Playlist extends Component {
 
   createTagList = song => {
     return song.tagNames.map((tag, i) => {
-      return (
-        <div className="Tag" key={i} tag={tag}>
-          {tag}
-        </div>
-      );
+      return <Tag tag={tag} key={i} />;
     });
   };
 

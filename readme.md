@@ -34,8 +34,8 @@
    If you do not have them you can generate them with:
 
    ```bash
-   $ mkdir public/img/2008
-   $ mkdir public/img/2009
+   $ mkdir public/jons/2008
+   $ mkdir public/jons/2009
    $ node server/scripts/yearOneImages.js
    $ node server/scripts/yearOneBackgroundAlone.js
    $ node server/scripts/yearOneJonAlone.js

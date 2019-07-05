@@ -1,0 +1,124 @@
+@import "./variables";
+
+// Start
+
+.Button {
+  background-color: $purple;
+  color: white;
+  border-radius: 3px;
+  padding: 10px 15px;
+  border: none;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  position: relative;
+  outline: none;
+  cursor: pointer;
+  > span.Icon {
+    margin: 0;
+    padding: 0px;
+    margin-right: 5px;
+    svg {
+      display: block;
+      height: 16px;
+      width: 16px;
+      fill: white;
+    }
+  }
+  svg { display: block;
+    height: 16px;
+    width: 16px;
+    fill: white; margin-left: 5px; }
+}
+
+// Song Card with player
+.Card {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 5px;
+  background-color: white;
+  &__Header {
+      padding: 10px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      &--Title {
+          h2 { font-size: 1.75em; margin-bottom: 0px; }
+          p { font-size: 1em; color: #aaa; }
+      }
+      &--Date {
+          background-color: $pink; 
+          text-align: center;
+          color: white;
+          padding: 5px;
+          border-radius: 5px;
+          .Large {
+              font-size: 1.75em;
+              margin: 0;
+          }
+          .Small {
+              margin: 0;
+              margin-top: -5px;
+              font-size: 0.85em;                
+          }
+      }
+  }
+  &__Video {}
+  &__Meta {
+      padding: 15px;
+  }
+}
+
+// Tags
+
+.Tag {
+  background-color: #f4f4f4;
+  padding: 10px 15px;
+  color: $purple;
+  border-radius: 3px;
+  text-transform: capitalize;
+  display: inline-block;
+  font-weight: 700;
+  margin-bottom: 15px;
+  transition: all .15s linear;
+  &:nth-of-type(n + 1) {
+    margin-right: 15px;
+  }
+  &:hover {
+    background-color: $purple;
+    color: white;
+  }
+}
+
+// Containers
+
+.Container {
+  &--Standard {
+    background: #f4f4f4;
+    width: 100%;
+  }
+  &__Contents {
+    max-width: 1600px;
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin: 0 auto;
+  }
+}
+
+// Forms
+
+input {
+  appearance: none;
+  background: none;
+  border: none;
+  border: 1px solid #efefef;
+  border-radius: 10px;
+  padding-left: 5px;
+  height: 40px;
+  outline: none;
+  transition: all .15s linear;
+  &:focus {
+    border-color: $purple;
+  }
+}
