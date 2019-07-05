@@ -3,8 +3,8 @@ import { Embed } from "semantic-ui-react";
 
 import { get } from "../helpers/requests";
 import AlbumCanvas from "../components/AlbumCanvas";
-import PageHeader from "../components/PageHeader";
 import moment from "moment";
+import Header from "../components/Header";
 
 import "../styles/song.scss";
 
@@ -40,6 +40,7 @@ class Song extends Component {
 
     return (
       <div>
+        
         <span className="page-nav previous-song">
           <span className="text">The Day Before</span>
         </span>
@@ -94,24 +95,35 @@ class Song extends Component {
             </div>
           </div>
           */}
-          <div className="song-content">
-            <h1 className="song-title">{song.title}</h1>
-            <h2 className="song-date">
-              {`Song ${song.number} | ${moment(song.date).format(
-                "MMMM Do, YYYY"
-              )}`}
-            </h2>
-
-            <p className="song-firsts">{song.firsts}</p>
-
-            <Embed
-              id={song.videoid}
-              placeholder={`https://img.youtube.com/vi/${
-                song.videoid
-              }/mqdefault.jpg`}
-              source="youtube"
-            />
-            <p className="song-description">{song.description}</p>
+          <div className="Card">
+            <div className="Card__Header">
+              <div className="Card__Header--Title">
+                <h2><a href={'/song/' + song.number}>{song.title}</a></h2>
+                <p>
+                  {`Song ${song.number} | ${moment(song.date).format(
+                    "MMMM Do, YYYY"
+                  )}`}
+                </p>
+              </div>
+              <div className="Card__Header--Date">
+                <p className="Large">{`${moment(song.date).format("DD")}`}</p>
+                <p className="Small">{`${moment(song.date).format(
+                  "MMM 'YY"
+                )}`}</p>
+              </div>
+            </div>
+            <div className="Card__Video">
+              <Embed
+                id={song.videoid}
+                placeholder={`https://img.youtube.com/vi/${
+                  song.videoid
+                }/mqdefault.jpg`}
+                source="youtube"
+              />
+            </div>
+            <div className="Card__Meta">
+              <p>{song.description}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -121,7 +133,7 @@ class Song extends Component {
   render() {
     return (
       <div>
-        <PageHeader />
+        <Header />
         {this.state.done && this.renderSong()}
         {!this.state.done && <div>Loading</div>}
       </div>

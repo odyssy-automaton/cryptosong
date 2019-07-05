@@ -8,6 +8,8 @@ import { get } from "../helpers/requests";
 import Header from "../components/Header";
 import AlbumCanvas from "../components/AlbumCanvas";
 
+import '../styles/songs.scss';
+
 class Songography extends Component {
   _isMounted = false;
   jsSearch = null;
@@ -112,36 +114,41 @@ class Songography extends Component {
     const sizeClass = `size-${size}`;
 
     return (
-      <div>
+      <div className="Songography">
         <Header />
         <div>
-          <div style={{ display: "flex" }}>
-            <input
-              style={{
-                backgroundColor: "#fff",
-                color: "rgba(0, 0, 0, 0.87)",
-                flexShrink: 0
-              }}
-              className="global-search-input icon-search"
-              type="search"
-              placeholder="Search"
-              value={this.state.searchInputValue}
-              onKeyPress={this.onSearchKeyPress}
-              onChange={this.onSearchChange}
-            />
+          <h1 style={{ paddingTop: 35, paddingLeft: 55, paddingBottom: 10 }}>Songography</h1>
+          <h3 style={{ paddingTop: 0, paddingLeft: 55, paddingBottom: 10 }}>
+              {!songs.length && loading
+                ? "loading songs"
+                : `${songs.length} ${songs.length === 1 ? "song" : "songs"} `}
+          </h3>
+          <div className="Toolbar" style={{ display: "flex" }}>
+            <button className="Button Sort" onClick={this.sortBy}>
+                Sort {sortOrder === "asc" ? <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="none" d="M0 0h24v24H0V0z"/>
+                <path fill="#010101" d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"/>
+                </svg> : <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="none" d="M0 0h24v24H0V0z"/>
+                <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/>
+                </svg>}
+              </button>
+              <input
+                style={{
+                  backgroundColor: "#fff",
+                  color: "rgba(0, 0, 0, 0.87)",
+                  flexShrink: 0
+                }}
+                className="global-search-input icon-search Search"
+                type="search"
+                placeholder="Search"
+                value={this.state.searchInputValue}
+                onKeyPress={this.onSearchKeyPress}
+                onChange={this.onSearchChange}
+              />
           </div>
         </div>
         <div style={{ paddingTop: 40, width: "100%" }}>
-          <h4 style={{ paddingLeft: 55, paddingBottom: 10 }}>
-            {!songs.length && loading
-              ? "loading songs"
-              : `${songs.length} ${songs.length === 1 ? "song" : "songs"} `}
-          </h4>
-          <div>
-            <button onClick={this.sortBy}>
-              Latest {sortOrder === "asc" ? `(up arrow)` : `(down arrow)`}
-            </button>
-          </div>
           {this.renderSongs(songs, sizeClass)}
         </div>
       </div>

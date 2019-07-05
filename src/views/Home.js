@@ -52,6 +52,7 @@ class Home extends Component {
   };
 
   handelPixel = pixelData => {
+    console.log(pixelData);
     if (pixelData.length) {
       this.setState({
         backgroundColor: `rgb(${pixelData[0]}, ${pixelData[1]}, ${
@@ -59,7 +60,7 @@ class Home extends Component {
         })`
       });
     } else {
-      this.setState({ backgroundColor: "rgb(256, 256, 256)" });
+      this.setState({ backgroundColor: "rgb(0, 0, 0)" });
     }
   };
 
@@ -82,7 +83,7 @@ class Home extends Component {
             </div>
             <div className="Container--Standard">
               <div className="Container__Contents" style={bgStyle}>
-                <h3>Current Playlist: All Songs</h3>
+                <h3 className="Playlist__Header">Current Playlist: <strong>All Songs</strong></h3>
                 <Playlist
                   songs={[song, ...songs]}
                   swapHeroSong={this.swapHeroSong}

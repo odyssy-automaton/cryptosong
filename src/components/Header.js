@@ -19,15 +19,16 @@ class Header extends Component {
             />
           </a>
         </div>
-        <nav className="Header__Nav" />
-        {pathname === "/" ? (
-          <Fragment>
-            <Link to="/songography">Songography</Link>
-            <SurpriseLink swapHeroSong={this.props.swapHeroSong} />
-          </Fragment>
-        ) : (
-          <Link to="/">Home</Link>
-        )}
+        <nav className="Header__Nav" >
+          {pathname === "/" ? (
+            <Fragment>
+              <Link to="/songography">Songography</Link>
+              <SurpriseLink swapHeroSong={this.props.swapHeroSong} />
+            </Fragment>
+          ) : (
+            <Link to="/">Home</Link>
+          )}
+        </nav>
       </div>
     );
   }
