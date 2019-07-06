@@ -122,3 +122,11 @@ input {
     border-color: $purple;
   }
 }
+
+// Utils
+
+.HidePhone {
+  @media (max-width: $phone){
+    display: none;
+  }
+}

@@ -22,7 +22,7 @@ class Header extends Component {
         <nav className="Header__Nav" >
           {pathname === "/" ? (
             <Fragment>
-              <Link to="/songography">Songography</Link>
+              <Link className="HidePhone" to="/songography">Songography</Link>
               <SurpriseLink swapHeroSong={this.props.swapHeroSong} />
             </Fragment>
           ) : (

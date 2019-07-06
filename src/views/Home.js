@@ -81,8 +81,8 @@ class Home extends Component {
                 cb={px => this.handelPixel(px)}
               />
             </div>
-            <div className="Container--Standard">
-              <div className="Container__Contents" style={bgStyle}>
+            <div className="Container--Standard" style={bgStyle}>
+              <div className="Container__Contents">
                 <h3 className="Playlist__Header">Current Playlist: <strong>All Songs</strong></h3>
                 <Playlist
                   songs={[song, ...songs]}

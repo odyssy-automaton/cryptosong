@@ -72,7 +72,7 @@ class SurpriseLink extends Component {
               />
             </svg>
           </span>
-          Surprise Me
+          <span className="HidePhone">Surprise Me</span>
         </button>
       </div>
     );
