@@ -18,7 +18,7 @@
     "moment": "^2.24.0",
     "moment-holiday": "^1.5.1",
     "moment-timezone": "^0.5.25",
-    "mongoose": "5.4.*",
+    "mongoose": "5.7.*",
     "node-sass": "^4.11.0",
     "nodemon": "^1.18.11",
     "progress": "^2.0.3",
