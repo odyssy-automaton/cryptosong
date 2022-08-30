@@ -17,7 +17,7 @@
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
     "moment-holiday": "^1.5.1",
-    "moment-timezone": "^0.5.25",
+    "moment-timezone": "^0.5.35",
     "mongoose": "5.4.*",
     "node-sass": "^4.11.0",
     "nodemon": "^1.18.11",
